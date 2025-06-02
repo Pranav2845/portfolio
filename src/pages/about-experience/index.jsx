@@ -1,3 +1,4 @@
+// /home/ubuntu/app/react_portfolio/src/pages/about-experience/index.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -6,10 +7,8 @@ import Image from 'components/AppImage';
 import Breadcrumb from 'components/ui/Breadcrumb';
 import PersonalBio from './components/PersonalBio';
 import SkillsShowcase from './components/SkillsShowcase';
-import ExperienceTimeline from './components/ExperienceTimeline';
 import EducationSection from './components/EducationSection';
 import CertificationsSection from './components/CertificationsSection';
-import TestimonialsSection from './components/TestimonialsSection';
 
 const AboutExperience = () => {
   const [activeSection, setActiveSection] = useState('bio');
@@ -18,10 +17,8 @@ const AboutExperience = () => {
   const sections = [
     { id: 'bio', label: 'About Me', icon: 'User' },
     { id: 'skills', label: 'Skills', icon: 'Code' },
-    { id: 'experience', label: 'Experience', icon: 'Briefcase' },
     { id: 'education', label: 'Education', icon: 'GraduationCap' },
-    { id: 'certifications', label: 'Certifications', icon: 'Award' },
-    { id: 'testimonials', label: 'Testimonials', icon: 'MessageSquare' }
+    { id: 'certifications', label: 'Certifications', icon: 'Award' }
   ];
 
   useEffect(() => {
@@ -83,11 +80,11 @@ const AboutExperience = () => {
           className="text-center mb-12"
         >
           <h1 className="text-fluid-3xl font-bold text-primary mb-4">
-            About Me & Experience
+            About Me & Skills
           </h1>
           <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto mb-8">
-            Passionate software engineer with 8+ years of experience creating innovative web solutions. 
-            Discover my journey, skills, and the experiences that shaped my career.
+            Passionate software engineer with expertise in creating innovative web solutions. 
+            Discover my journey, skills, and educational background.
           </p>
           
           {/* Action Buttons */}
@@ -190,11 +187,6 @@ const AboutExperience = () => {
               <SkillsShowcase isVisible={isVisible.skills} />
             </section>
 
-            {/* Experience Timeline Section */}
-            <section id="experience">
-              <ExperienceTimeline isVisible={isVisible.experience} />
-            </section>
-
             {/* Education Section */}
             <section id="education">
               <EducationSection isVisible={isVisible.education} />
@@ -203,11 +195,6 @@ const AboutExperience = () => {
             {/* Certifications Section */}
             <section id="certifications">
               <CertificationsSection isVisible={isVisible.certifications} />
-            </section>
-
-            {/* Testimonials Section */}
-            <section id="testimonials">
-              <TestimonialsSection isVisible={isVisible.testimonials} />
             </section>
           </div>
         </div>
