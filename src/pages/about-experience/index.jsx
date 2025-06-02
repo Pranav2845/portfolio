@@ -1,0 +1,251 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Icon from 'components/AppIcon';
+import Image from 'components/AppImage';
+import Breadcrumb from 'components/ui/Breadcrumb';
+import PersonalBio from './components/PersonalBio';
+import SkillsShowcase from './components/SkillsShowcase';
+import ExperienceTimeline from './components/ExperienceTimeline';
+import EducationSection from './components/EducationSection';
+import CertificationsSection from './components/CertificationsSection';
+import TestimonialsSection from './components/TestimonialsSection';
+
+const AboutExperience = () => {
+  const [activeSection, setActiveSection] = useState('bio');
+  const [isVisible, setIsVisible] = useState({});
+
+  const sections = [
+    { id: 'bio', label: 'About Me', icon: 'User' },
+    { id: 'skills', label: 'Skills', icon: 'Code' },
+    { id: 'experience', label: 'Experience', icon: 'Briefcase' },
+    { id: 'education', label: 'Education', icon: 'GraduationCap' },
+    { id: 'certifications', label: 'Certifications', icon: 'Award' },
+    { id: 'testimonials', label: 'Testimonials', icon: 'MessageSquare' }
+  ];
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '-50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80;
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleDownloadResume = () => {
+    // Mock resume download
+    const link = document.createElement('a');
+    link.href = '#';
+    link.download = 'John_Doe_Resume.pdf';
+    link.click();
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header Spacing */}
+      <div className="h-16 lg:h-20" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Breadcrumb />
+
+        {/* Page Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-fluid-3xl font-bold text-primary mb-4">
+            About Me & Experience
+          </h1>
+          <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto mb-8">
+            Passionate software engineer with 8+ years of experience creating innovative web solutions. 
+            Discover my journey, skills, and the experiences that shaped my career.
+          </p>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={handleDownloadResume}
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
+            >
+              <Icon name="Download" size={20} strokeWidth={2} />
+              <span className="font-medium">Download Resume</span>
+            </button>
+            <Link
+              to="/contact-connect"
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-text-primary hover:bg-surface rounded-lg nav-transition"
+            >
+              <Icon name="Mail" size={20} strokeWidth={2} />
+              <span className="font-medium">Get In Touch</span>
+            </Link>
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Sidebar Navigation */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
+              <h3 className="text-lg font-semibold text-primary mb-4">Quick Navigation</h3>
+              <nav className="space-y-2">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition ${
+                      activeSection === section.id
+                        ? 'bg-accent text-white' :'text-text-secondary hover:text-accent hover:bg-background'
+                    }`}
+                  >
+                    <Icon 
+                      name={section.icon} 
+                      size={18} 
+                      strokeWidth={2}
+                      color={activeSection === section.id ? 'white' : 'currentColor'}
+                    />
+                    <span className="text-sm font-medium">{section.label}</span>
+                  </button>
+                ))}
+              </nav>
+
+              {/* Professional Photo */}
+              <div className="mt-8 text-center">
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-accent/20">
+                  <Image
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
+                    alt="Professional headshot"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 className="text-lg font-semibold text-primary">John Doe</h4>
+                <p className="text-sm text-text-secondary">Senior Frontend Developer</p>
+                
+                {/* Social Links */}
+                <div className="flex justify-center space-x-3 mt-4">
+                  <a
+                    href="https://linkedin.com/in/johndoe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                  >
+                    <Icon name="Linkedin" size={16} strokeWidth={2} />
+                  </a>
+                  <a
+                    href="https://github.com/johndoe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                  >
+                    <Icon name="Github" size={16} strokeWidth={2} />
+                  </a>
+                  <a
+                    href="https://twitter.com/johndoe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                  >
+                    <Icon name="Twitter" size={16} strokeWidth={2} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="lg:col-span-3 space-y-16">
+            {/* Personal Bio Section */}
+            <section id="bio">
+              <PersonalBio isVisible={isVisible.bio} />
+            </section>
+
+            {/* Skills Showcase Section */}
+            <section id="skills">
+              <SkillsShowcase isVisible={isVisible.skills} />
+            </section>
+
+            {/* Experience Timeline Section */}
+            <section id="experience">
+              <ExperienceTimeline isVisible={isVisible.experience} />
+            </section>
+
+            {/* Education Section */}
+            <section id="education">
+              <EducationSection isVisible={isVisible.education} />
+            </section>
+
+            {/* Certifications Section */}
+            <section id="certifications">
+              <CertificationsSection isVisible={isVisible.certifications} />
+            </section>
+
+            {/* Testimonials Section */}
+            <section id="testimonials">
+              <TestimonialsSection isVisible={isVisible.testimonials} />
+            </section>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mt-16 py-12 bg-surface rounded-xl border border-border"
+        >
+          <h2 className="text-fluid-2xl font-bold text-primary mb-4">
+            Ready to Work Together?
+          </h2>
+          <p className="text-fluid-base text-text-secondary mb-8 max-w-2xl mx-auto">
+            I'm always excited to take on new challenges and collaborate on innovative projects. Let's discuss how we can bring your ideas to life.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/projects-gallery"
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-text-primary hover:bg-background rounded-lg nav-transition"
+            >
+              <Icon name="FolderOpen" size={20} strokeWidth={2} />
+              <span className="font-medium">View My Work</span>
+            </Link>
+            <Link
+              to="/contact-connect"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
+            >
+              <Icon name="MessageCircle" size={20} strokeWidth={2} />
+              <span className="font-medium">Start a Conversation</span>
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutExperience;
