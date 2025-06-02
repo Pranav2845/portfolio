@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon';
-import Image from 'components/AppImage';
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -59,18 +58,6 @@ const HeroSection = () => {
     }
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-surface to-background">
       {/* Animated Background */}
@@ -86,13 +73,13 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+          className="flex flex-col items-center text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="max-w-4xl">
             <motion.div variants={itemVariants} className="mb-6">
               <span className="inline-flex items-center px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
                 <Icon name="Sparkles" size={16} className="mr-2" strokeWidth={2} />
@@ -109,7 +96,7 @@ const HeroSection = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto lg:mx-0"
+              className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto"
             >
               I create exceptional digital experiences that combine beautiful design with robust functionality. 
               Passionate about building products that make a difference in people's lives.
@@ -118,7 +105,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             >
               <Link
                 to="/projects-gallery"
@@ -148,7 +135,7 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Social Links */}
-            <motion.div variants={itemVariants} className="flex justify-center lg:justify-start space-x-4">
+            <motion.div variants={itemVariants} className="flex justify-center space-x-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -168,54 +155,6 @@ const HeroSection = () => {
               ))}
             </motion.div>
           </div>
-
-          {/* Professional Image */}
-          <motion.div
-            variants={imageVariants}
-            className="order-1 lg:order-2 flex justify-center"
-          >
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white shadow-large">
-                <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                  alt="John Doe - Professional Headshot"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 bg-accent rounded-full flex items-center justify-center shadow-medium"
-                animate={{
-                  y: [0, -10, 0],
-                  rotate: [0, 5, 0]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <Icon name="Code" size={24} color="white" strokeWidth={2} />
-              </motion.div>
-              
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-success rounded-full flex items-center justify-center shadow-medium"
-                animate={{
-                  y: [0, 10, 0],
-                  rotate: [0, -5, 0]
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5
-                }}
-              >
-                <Icon name="Palette" size={18} color="white" strokeWidth={2} />
-              </motion.div>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Scroll Indicator */}

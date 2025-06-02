@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon';
-import Image from 'components/AppImage';
 import Breadcrumb from 'components/ui/Breadcrumb';
 import PersonalBio from './components/PersonalBio';
 import SkillsShowcase from './components/SkillsShowcase';
@@ -132,20 +131,13 @@ const AboutExperience = () => {
                 ))}
               </nav>
 
-              {/* Professional Photo */}
+              {/* Professional Info */}
               <div className="mt-8 text-center">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-accent/20">
-                  <Image
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
-                    alt="Professional headshot"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h4 className="text-lg font-semibold text-primary">John Doe</h4>
-                <p className="text-sm text-text-secondary">Senior Frontend Developer</p>
+                <h4 className="text-lg font-semibold text-primary mb-2">John Doe</h4>
+                <p className="text-sm text-text-secondary mb-4">Senior Frontend Developer</p>
                 
                 {/* Social Links */}
-                <div className="flex justify-center space-x-3 mt-4">
+                <div className="flex justify-center space-x-3">
                   <a
                     href="https://linkedin.com/in/johndoe"
                     target="_blank"

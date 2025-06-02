@@ -62,8 +62,7 @@ Additionally, the client needed seamless integration with their existing ERP sys
       features: [
         'Real-time inventory management','Advanced product search and filtering','Personalized recommendations','Multi-payment gateway integration','Progressive Web App (PWA)','Admin dashboard','Order tracking system','Customer reviews and ratings'
       ],
-      liveUrl: 'https://demo-ecommerce.example.com',
-      githubUrl: 'https://github.com/username/ecommerce-platform',
+      liveUrl: 'https://demo-ecommerce.example.com',githubUrl: 'https://github.com/username/ecommerce-platform',
       testimonial: {
         quote: "The new platform transformed our business completely. The team delivered beyond our expectations with exceptional attention to detail and performance.",
         author: "Sarah Johnson",
@@ -77,14 +76,7 @@ Additionally, the client needed seamless integration with their existing ERP sys
       ]
     },
     {
-      id: '2',
-      title: 'Task Management App',
-      subtitle: 'Mobile-First Progressive Web App',
-      duration: '4 months',
-      role: 'Full-Stack Developer',
-      category: 'Mobile App',
-      status: 'Completed',
-      heroImage: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=600&fit=crop',
+      id: '2',title: 'Task Management App',subtitle: 'Mobile-First Progressive Web App',duration: '4 months',role: 'Full-Stack Developer',category: 'Mobile App',status: 'Completed',heroImage: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=600&fit=crop',
       overview: `A comprehensive task management application designed for teams and individuals to boost productivity and collaboration.`,
       challenge: `Creating an intuitive interface that works seamlessly across all devices while maintaining real-time synchronization.`,
       solution: `Implemented a React-based PWA with real-time updates using WebSockets and offline functionality.`,
@@ -96,8 +88,7 @@ Additionally, the client needed seamless integration with their existing ERP sys
         { name: 'IndexedDB', category: 'Storage' }
       ],
       features: ['Real-time collaboration', 'Offline functionality', 'Task automation', 'Team analytics'],
-      liveUrl: 'https://demo-tasks.example.com',
-      githubUrl: 'https://github.com/username/task-app',
+      liveUrl: 'https://demo-tasks.example.com',githubUrl: 'https://github.com/username/task-app',
       testimonial: {
         quote: "This app revolutionized how our team manages projects. The interface is intuitive and the features are exactly what we needed.",
         author: "Mike Chen",
@@ -111,14 +102,7 @@ Additionally, the client needed seamless integration with their existing ERP sys
       ]
     },
     {
-      id: '3',
-      title: 'Analytics Dashboard',
-      subtitle: 'Data Visualization Platform',
-      duration: '5 months',
-      role: 'Frontend Architect',
-      category: 'Data Visualization',
-      status: 'Completed',
-      heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
+      id: '3',title: 'Analytics Dashboard',subtitle: 'Data Visualization Platform',duration: '5 months',role: 'Frontend Architect',category: 'Data Visualization',status: 'Completed',heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
       overview: `An advanced analytics dashboard for business intelligence and data visualization.`,
       challenge: `Processing and visualizing large datasets while maintaining smooth user interactions.`,
       solution: `Built with React and D3.js for custom visualizations with optimized rendering techniques.`,
@@ -130,8 +114,7 @@ Additionally, the client needed seamless integration with their existing ERP sys
         { name: 'Python', category: 'Backend' }
       ],
       features: ['Interactive charts', 'Real-time data', 'Custom filters', 'Export functionality'],
-      liveUrl: 'https://demo-analytics.example.com',
-      githubUrl: 'https://github.com/username/analytics-dashboard',
+      liveUrl: 'https://demo-analytics.example.com',githubUrl: 'https://github.com/username/analytics-dashboard',
       testimonial: {
         quote: "The dashboard provides incredible insights into our business metrics. The visualizations are both beautiful and functional.",
         author: "Lisa Rodriguez",

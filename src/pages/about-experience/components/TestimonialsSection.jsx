@@ -15,55 +15,31 @@ const TestimonialsSection = ({ isVisible }) => {
       avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
       content: `John is an exceptional frontend developer who consistently delivers high-quality work. His attention to detail and ability to translate complex requirements into intuitive user interfaces is remarkable. During our collaboration on the enterprise dashboard project, he not only met all deadlines but also proactively suggested improvements that enhanced the overall user experience.
 
-His technical expertise in React and modern JavaScript frameworks is outstanding, and he has a unique ability to mentor junior developers while maintaining his own productivity. John's collaborative approach and problem-solving skills make him an invaluable team member.`,
-      rating: 5,
-      project: 'Enterprise Dashboard Redesign',
-      date: 'March 2023'
+His technical expertise in React and modern JavaScript frameworks is outstanding, and he has a unique ability to mentor junior developers while maintaining his own productivity. John's collaborative approach and problem-solving skills make him an invaluable team member.`,rating: 5,project: 'Enterprise Dashboard Redesign',date: 'March 2023'
     },
     {
       id: 2,
-      name: 'Michael Chen',
-      position: 'Senior Backend Developer',
-      company: 'Digital Innovations Inc',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+      name: 'Michael Chen',position: 'Senior Backend Developer',company: 'Digital Innovations Inc',avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
       content: `Working with John was a fantastic experience. His frontend expertise perfectly complemented our backend systems, and he demonstrated excellent understanding of API integration and performance optimization. John's code is clean, well-documented, and follows best practices consistently.
 
-What impressed me most was his proactive communication and ability to anticipate potential issues before they became problems. He's not just a skilled developer but also a great collaborator who makes the entire team more effective.`,
-      rating: 5,
-      project: 'E-commerce Platform Development',
-      date: 'November 2022'
+What impressed me most was his proactive communication and ability to anticipate potential issues before they became problems. He's not just a skilled developer but also a great collaborator who makes the entire team more effective.`,rating: 5,project: 'E-commerce Platform Development',date: 'November 2022'
     },
     {
       id: 3,
-      name: 'Emily Rodriguez',
-      position: 'UX Designer',
-      company: 'StartupXYZ',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+      name: 'Emily Rodriguez',position: 'UX Designer',company: 'StartupXYZ',avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
       content: `John has an incredible ability to bring designs to life while maintaining pixel-perfect accuracy. His understanding of user experience principles goes beyond just implementation – he often provides valuable feedback that improves the overall design.
 
 His collaborative approach during our design-development handoffs was seamless. John asks the right questions, suggests practical alternatives when needed, and always keeps the user experience at the forefront of his development decisions.`,
       rating: 5,
-      project: 'Mobile-First Web Application',
-      date: 'August 2021'
+      project: 'Mobile-First Web Application',date: 'August 2021'
     },
     {
       id: 4,
-      name: 'David Thompson',
-      position: 'CTO',
-      company: 'WebDev Agency',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
-      content: `John started as a junior developer and quickly proved himself to be one of our most reliable team members. His growth trajectory was impressive – he went from implementing basic features to architecting complex frontend solutions in record time.His mentorship of other junior developers and his contribution to our coding standards and best practices have had a lasting positive impact on our entire development team. John is the kind of developer every team needs.`,
-      rating: 5,
-      project: 'Multiple Client Projects',
-      date: 'June 2018'
+      name: 'David Thompson',position: 'CTO',company: 'WebDev Agency',avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',content: `John started as a junior developer and quickly proved himself to be one of our most reliable team members. His growth trajectory was impressive – he went from implementing basic features to architecting complex frontend solutions in record time.His mentorship of other junior developers and his contribution to our coding standards and best practices have had a lasting positive impact on our entire development team. John is the kind of developer every team needs.`,rating: 5,project: 'Multiple Client Projects',date: 'June 2018'
     },
     {
       id: 5,
-      name: 'Lisa Wang',
-      position: 'Project Manager',
-      company: 'TechCorp Solutions',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
-      content: `John's project management skills complement his technical abilities perfectly. He provides accurate estimates, communicates progress clearly, and proactively identifies risks. His ability to break down complex features into manageable tasks has been instrumental in our project success.
+      name: 'Lisa Wang',position: 'Project Manager',company: 'TechCorp Solutions',avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',content: `John's project management skills complement his technical abilities perfectly. He provides accurate estimates, communicates progress clearly, and proactively identifies risks. His ability to break down complex features into manageable tasks has been instrumental in our project success.
 
 Working with John gives me confidence that deliverables will be completed on time and to specification. His professional approach and reliability make project planning much more predictable.`,
       rating: 5,
