@@ -1,6 +1,5 @@
-// /home/ubuntu/app/react_portfolio/src/pages/about-experience/index.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon';
 import Breadcrumb from 'components/ui/Breadcrumb';
@@ -10,6 +9,7 @@ import EducationSection from './components/EducationSection';
 import CertificationsSection from './components/CertificationsSection';
 
 const AboutExperience = () => {
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState('bio');
   const [isVisible, setIsVisible] = useState({});
 
@@ -17,25 +17,25 @@ const AboutExperience = () => {
     { id: 'bio', label: 'About Me', icon: 'User' },
     { id: 'skills', label: 'Skills', icon: 'Code' },
     { id: 'education', label: 'Education', icon: 'GraduationCap' },
-    { id: 'certifications', label: 'Certifications', icon: 'Award' }
+    { id: 'certifications', label: 'Certifications', icon: 'Award' },
   ];
 
   useEffect(() => {
+    // Intersection Observer for active section highlighting
     const observerOptions = {
       threshold: 0.3,
-      rootMargin: '-50px 0px'
+      rootMargin: '-50px 0px',
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-          setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
+          setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
         }
       });
     }, observerOptions);
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const element = document.getElementById(section.id);
       if (element) observer.observe(element);
     });
@@ -43,26 +43,42 @@ const AboutExperience = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    // Scroll to hash target if present
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.offsetTop - headerHeight;
+
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }, [location]);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const headerHeight = 80;
       const elementPosition = element.offsetTop - headerHeight;
+
       window.scrollTo({
         top: elementPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
-
+  
   const handleDownloadResume = () => {
-    // Mock resume download
     const link = document.createElement('a');
     link.href = '#';
-    link.download = 'John_Doe_Resume.pdf';
+    link.download = 'Pranav_Pandey_Resume.pdf';
     link.click();
   };
-
+  
   return (
     <div className="min-h-screen bg-background">
       {/* Header Spacing */}
@@ -82,8 +98,7 @@ const AboutExperience = () => {
             About Me & Skills
           </h1>
           <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto mb-8">
-            Passionate software engineer with expertise in creating innovative web solutions. 
-            Discover my journey, skills, and educational background.
+            Passionate software engineer with expertise in creating innovative web solutions. Discover my journey, skills, and educational background.
           </p>
           
           {/* Action Buttons */}
@@ -106,6 +121,7 @@ const AboutExperience = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          
           {/* Sidebar Navigation */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
@@ -117,14 +133,15 @@ const AboutExperience = () => {
                     onClick={() => scrollToSection(section.id)}
                     className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition ${
                       activeSection === section.id
-                        ? 'bg-accent text-white' :'text-text-secondary hover:text-accent hover:bg-background'
+                        ? 'bg-accent text-white'
+                        : 'text-text-secondary hover:text-accent hover:bg-background'
                     }`}
                   >
                     <Icon 
                       name={section.icon} 
                       size={18} 
                       strokeWidth={2}
-                      color={activeSection === section.id ? 'white' : 'currentColor'}
+                      color={activeSection === section.id ? 'white' : 'currentColor'} 
                     />
                     <span className="text-sm font-medium">{section.label}</span>
                   </button>
@@ -133,13 +150,13 @@ const AboutExperience = () => {
 
               {/* Professional Info */}
               <div className="mt-8 text-center">
-                <h4 className="text-lg font-semibold text-primary mb-2">John Doe</h4>
-                <p className="text-sm text-text-secondary mb-4">Senior Frontend Developer</p>
+                <h4 className="text-lg font-semibold text-primary mb-2">Pranav Pandey</h4>
+                <p className="text-sm text-text-secondary mb-4">Code Enthusiast</p>
                 
                 {/* Social Links */}
                 <div className="flex justify-center space-x-3">
                   <a
-                    href="https://linkedin.com/in/johndoe"
+                    href="https://www.linkedin.com/in/pranav-pandey001/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
@@ -147,20 +164,12 @@ const AboutExperience = () => {
                     <Icon name="Linkedin" size={16} strokeWidth={2} />
                   </a>
                   <a
-                    href="https://github.com/johndoe"
+                    href="https://github.com/Pranav2845"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
                   >
                     <Icon name="Github" size={16} strokeWidth={2} />
-                  </a>
-                  <a
-                    href="https://twitter.com/johndoe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
-                  >
-                    <Icon name="Twitter" size={16} strokeWidth={2} />
                   </a>
                 </div>
               </div>
@@ -169,22 +178,15 @@ const AboutExperience = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-3 space-y-16">
-            {/* Personal Bio Section */}
             <section id="bio">
               <PersonalBio isVisible={isVisible.bio} />
             </section>
-
-            {/* Skills Showcase Section */}
             <section id="skills">
               <SkillsShowcase isVisible={isVisible.skills} />
             </section>
-
-            {/* Education Section */}
             <section id="education">
               <EducationSection isVisible={isVisible.education} />
             </section>
-
-            {/* Certifications Section */}
             <section id="certifications">
               <CertificationsSection isVisible={isVisible.certifications} />
             </section>
@@ -205,6 +207,7 @@ const AboutExperience = () => {
           <p className="text-fluid-base text-text-secondary mb-8 max-w-2xl mx-auto">
             I'm always excited to take on new challenges and collaborate on innovative projects. Let's discuss how we can bring your ideas to life.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/projects-gallery"

@@ -9,6 +9,9 @@ import ProjectsGallery from "pages/projects-gallery";
 import ProjectDetailView from "pages/project-detail-view";
 import AboutExperience from "pages/about-experience";
 import NotFound from "pages/NotFound";
+import SkillsOverview from "pages/skills-overview";
+import EducationJourney from "pages/education-journey";
+import CertificationsShowcase from "pages/certifications-showcase";
 
 const Routes = () => {
   return (

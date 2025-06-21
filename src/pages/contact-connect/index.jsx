@@ -52,8 +52,9 @@ const ContactConnect = () => {
             Contact & Connect
           </h1>
           <p className="text-fluid-lg text-text-secondary max-w-2xl mx-auto">
-            Let's start a conversation about your next project or collaboration opportunity.
-          </p>
+  Whether it’s code, design, or ideas—you bring the vision, I’ll bring the skills.
+</p>
+
         </motion.div>
 
         {/* Main Content */}
@@ -75,42 +76,43 @@ const ContactConnect = () => {
 
         {/* Additional Information */}
         <motion.div 
-          className="mt-16 lg:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
-          variants={itemVariants}
-        >
-          {/* Response Time */}
-          <div className="text-center p-6 bg-surface rounded-xl">
-            <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Icon name="Clock" size={24} className="text-accent" strokeWidth={2} />
-            </div>
-            <h3 className="text-lg font-semibold text-primary mb-2">Quick Response</h3>
-            <p className="text-text-secondary">
-              I typically respond to inquiries within 24 hours during business days.
-            </p>
-          </div>
+  className="mt-16 lg:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
+  variants={itemVariants}
+>
+  {/* Response Time */}
+  <div className="text-center p-6 bg-surface rounded-xl">
+    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+      <Icon name="Clock" size={24} className="text-accent" strokeWidth={2} />
+    </div>
+    <h3 className="text-lg font-semibold text-primary mb-2">Quick Response</h3>
+    <p className="text-text-secondary">
+      I typically respond to emails and messages within 24 hours on weekdays.
+    </p>
+  </div>
 
-          {/* Availability */}
-          <div className="text-center p-6 bg-surface rounded-xl">
-            <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Icon name="Calendar" size={24} className="text-success" strokeWidth={2} />
-            </div>
-            <h3 className="text-lg font-semibold text-primary mb-2">Availability</h3>
-            <p className="text-text-secondary">
-              Currently available for new projects and collaborations starting Q2 2024.
-            </p>
-          </div>
+  {/* Availability */}
+  <div className="text-center p-6 bg-surface rounded-xl">
+    <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+      <Icon name="Calendar" size={24} className="text-success" strokeWidth={2} />
+    </div>
+    <h3 className="text-lg font-semibold text-primary mb-2">Availability</h3>
+    <p className="text-text-secondary">
+      Open to internship and entry-level software development roles starting immediately.
+    </p>
+  </div>
 
-          {/* Meeting */}
-          <div className="text-center p-6 bg-surface rounded-xl">
-            <div className="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Icon name="Video" size={24} className="text-warning" strokeWidth={2} />
-            </div>
-            <h3 className="text-lg font-semibold text-primary mb-2">Virtual Meetings</h3>
-            <p className="text-text-secondary">
-              Schedule a video call to discuss your project requirements in detail.
-            </p>
-          </div>
-        </motion.div>
+  {/* Ready for Hire */}
+  <div className="text-center p-6 bg-surface rounded-xl">
+    <div className="w-12 h-12 bg-info/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+      <Icon name="Briefcase" size={24} className="text-info" strokeWidth={2} />
+    </div>
+    <h3 className="text-lg font-semibold text-primary mb-2">Ready for Hire</h3>
+    <p className="text-text-secondary">
+      Actively seeking opportunities to contribute, grow, and deliver value in a dynamic tech environment.
+    </p>
+  </div>
+</motion.div>
+
 
         {/* Success Message */}
         {isSubmitted && (

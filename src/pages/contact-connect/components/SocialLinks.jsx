@@ -7,7 +7,7 @@ const SocialLinks = () => {
     {
       name: 'LinkedIn',
       icon: 'Linkedin',
-      url: 'https://linkedin.com/in/portfolio-dev',
+      url: 'https://www.linkedin.com/in/pranav-pandey001/',
       color: 'hover:text-blue-600',
       bgColor: 'hover:bg-blue-50',
       description: 'Professional network and career updates'
@@ -15,43 +15,11 @@ const SocialLinks = () => {
     {
       name: 'GitHub',
       icon: 'Github',
-      url: 'https://github.com/portfolio-dev',
+      url: 'https://github.com/Pranav2845',
       color: 'hover:text-gray-900',
       bgColor: 'hover:bg-gray-50',
       description: 'Code repositories and open source projects'
     },
-    {
-      name: 'Twitter',
-      icon: 'Twitter',
-      url: 'https://twitter.com/portfolio_dev',
-      color: 'hover:text-blue-400',
-      bgColor: 'hover:bg-blue-50',
-      description: 'Tech insights and industry discussions'
-    },
-    {
-      name: 'Dribbble',
-      icon: 'Dribbble',
-      url: 'https://dribbble.com/portfolio-dev',
-      color: 'hover:text-pink-500',
-      bgColor: 'hover:bg-pink-50',
-      description: 'Design portfolio and creative work'
-    },
-    {
-      name: 'Medium',
-      icon: 'BookOpen',
-      url: 'https://medium.com/@portfolio-dev',
-      color: 'hover:text-green-600',
-      bgColor: 'hover:bg-green-50',
-      description: 'Technical articles and tutorials'
-    },
-    {
-      name: 'YouTube',
-      icon: 'Youtube',
-      url: 'https://youtube.com/@portfolio-dev',
-      color: 'hover:text-red-600',
-      bgColor: 'hover:bg-red-50',
-      description: 'Coding tutorials and tech reviews'
-    }
   ];
 
   const containerVariants = {
@@ -124,47 +92,6 @@ const SocialLinks = () => {
           </motion.a>
         ))}
       </motion.div>
-
-      {/* Social Stats */}
-      <div className="mt-8 pt-6 border-t border-border">
-        <h3 className="text-lg font-semibold text-primary mb-4">Social Presence</h3>
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="p-3 bg-background rounded-lg">
-            <div className="text-2xl font-bold text-accent">2.5K</div>
-            <div className="text-sm text-text-secondary">Followers</div>
-          </div>
-          <div className="p-3 bg-background rounded-lg">
-            <div className="text-2xl font-bold text-success">150+</div>
-            <div className="text-sm text-text-secondary">Projects</div>
-          </div>
-          <div className="p-3 bg-background rounded-lg">
-            <div className="text-2xl font-bold text-warning">50+</div>
-            <div className="text-sm text-text-secondary">Articles</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Newsletter Signup */}
-      <div className="mt-6 p-4 bg-accent/5 border border-accent/20 rounded-lg">
-        <div className="flex items-start space-x-3">
-          <div className="flex-shrink-0 w-8 h-8 bg-accent/10 rounded-lg flex items-center justify-center">
-            <Icon name="Mail" size={16} className="text-accent" strokeWidth={2} />
-          </div>
-          <div className="flex-1">
-            <h4 className="text-sm font-medium text-primary mb-1">Stay Updated</h4>
-            <p className="text-sm text-text-secondary mb-3">
-              Get notified about new projects and articles.
-            </p>
-            <a
-              href="mailto:hello@portfolio.dev?subject=Newsletter Subscription"
-              className="inline-flex items-center space-x-1 text-sm font-medium text-accent hover:text-accent/80 nav-transition"
-            >
-              <span>Subscribe to Newsletter</span>
-              <Icon name="ArrowRight" size={14} strokeWidth={2} />
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

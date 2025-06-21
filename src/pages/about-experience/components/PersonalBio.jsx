@@ -4,13 +4,13 @@ import Icon from 'components/AppIcon';
 
 const PersonalBio = ({ isVisible }) => {
   const personalInfo = {
-    biography: `I'm a passionate software engineer with over 8 years of experience specializing in frontend development. My journey in technology began with a fascination for building things that people interact with daily. This curiosity led me to pursue a degree in Computer Science and eventually specialize in creating intuitive, efficient, and beautiful web applications.
+    biography: `I'm an aspiring software engineer currently pursuing a B.Tech in Computer Science at Galgotias University, with a strong passion for frontend development and a solid foundation in Data Structures and Algorithms (DSA). My journey in technology started with a curiosity for how websites work, which has grown into a focused interest in building responsive, user-centric web applications.
 
-What drives me is the intersection of technology and human experience – finding ways to make complex systems feel simple and intuitive for users while maintaining technical excellence behind the scenes.
+What drives me is the intersection of technology and human experience — finding ways to make complex systems intuitive, accessible, and impactful. I enjoy the process of turning ideas into real-world solutions, writing clean and efficient code, and constantly learning new tools and technologies.
 
-Throughout my career, I've had the privilege of working with diverse teams across various industries, from startups to enterprise-level organizations. This experience has taught me the importance of adaptability, clear communication, and the value of understanding business objectives alongside technical requirements.
+I've had the opportunity to work on projects that integrate APIs, improve UI/UX design, and apply modern frameworks like React and Tailwind CSS. I'm actively involved in hackathons, open-source contributions, and tech communities where I continue to learn and grow.
 
-When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or mentoring aspiring developers. I believe in continuous learning and sharing knowledge with the community that has given me so much.`,
+When I'm not coding, you'll find me solving DSA problems on LeetCode, exploring new frameworks, or helping fellow students understand core programming concepts. I believe in continuous improvement and sharing knowledge — values that inspire my journey as a developer.`,
     
     highlights: [
       {
@@ -115,31 +115,40 @@ When I'm not coding, you'll find me exploring new technologies, contributing to 
       </motion.div>
 
       {/* Fun Facts */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-8 p-6 bg-accent/5 rounded-lg border border-accent/20"
-      >
-        <h3 className="text-lg font-semibold text-primary mb-4 flex items-center space-x-2">
-          <Icon name="Coffee" size={20} className="text-accent" strokeWidth={2} />
-          <span>Beyond the Code</span>
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-          <div className="p-4">
-            <div className="text-2xl font-bold text-accent mb-1">500+</div>
-            <div className="text-sm text-text-secondary">Cups of Coffee</div>
-          </div>
-          <div className="p-4">
-            <div className="text-2xl font-bold text-accent mb-1">50+</div>
-            <div className="text-sm text-text-secondary">Projects Completed</div>
-          </div>
-          <div className="p-4">
-            <div className="text-2xl font-bold text-accent mb-1">8+</div>
-            <div className="text-sm text-text-secondary">Years Experience</div>
-          </div>
-        </div>
-      </motion.div>
+      {/* Beyond the Code */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  transition={{ duration: 0.6, delay: 0.6 }}
+  className="mt-8 p-6 bg-accent/5 rounded-lg border border-accent/20"
+>
+  <h3 className="text-lg font-semibold text-primary mb-4 flex items-center space-x-2">
+  <Icon name="Globe" size={20} className="text-accent" strokeWidth={2} />
+  <span>Beyond the Code</span>
+</h3>
+
+
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+    <div className="p-4">
+      <div className="text-lg font-semibold text-accent mb-1">Chess</div>
+      <div className="text-sm text-text-secondary">Strategic mindset</div>
+    </div>
+    <div className="p-4">
+      <div className="text-lg font-semibold text-accent mb-1">Reading</div>
+      <div className="text-sm text-text-secondary">Narrative thinking</div>
+    </div>
+    <div className="p-4">
+      <div className="text-lg font-semibold text-accent mb-1">Running</div>
+      <div className="text-sm text-text-secondary">Focus & discipline</div>
+    </div>
+    <div className="p-4">
+      <div className="text-lg font-semibold text-accent mb-1">Calisthenics</div>
+      <div className="text-sm text-text-secondary">Strength & mobility</div>
+    </div>
+  </div>
+</motion.div>
+
+
     </motion.div>
   );
 };

@@ -5,23 +5,31 @@ import Icon from 'components/AppIcon';
 
 const IntroductionSection = () => {
   const personalInfo = {
-    biography: `I'm a passionate software engineer with over 8 years of experience specializing in frontend development. My journey in technology began with a fascination for building things that people interact with daily. This curiosity led me to pursue a degree in Computer Science and eventually specialize in creating intuitive, efficient, and beautiful web applications.
-
-What drives me is the intersection of technology and human experience – finding ways to make complex systems feel simple and intuitive for users while maintaining technical excellence behind the scenes.`,
+    biography: `I'm a B.Tech student at Galgotias University with a solid foundation in Data Structures and Algorithms (DSA) and a growing expertise in web development. I enjoy building responsive, user-friendly websites using modern web technologies like React, Node.js, and Express. I'm passionate about solving real-world problems through code, continuously learning new tools, and keeping up with the latest trends in the tech world. I believe in the power of technology to simplify complex processes and enhance human experiences through thoughtful design and robust functionality.`,
+    
     highlights: [
-      {
-        icon: 'Trophy',title: '50+ Projects',description: 'Successfully delivered projects ranging from startups to enterprise solutions'
-      },
-      {
-        icon: 'Users',title: '100K+ Users',description: 'Built applications serving hundreds of thousands of active users'
-      },
-      {
-        icon: 'Award',title: '15+ Awards',description: 'Recognition for excellence in design and development'
-      },
-      {
-        icon: 'Clock',title: '8+ Years',description: 'Professional experience in software development and design'
-      }
-    ]
+  {
+    icon: 'Code',
+    title: 'Project Experience',
+    description: 'Worked on academic and personal projects using React, Node.js, and Express to build functional web applications.'
+  },
+  {
+    icon: 'RefreshCw',
+    title: 'Technological Agility',
+    description: 'Comfortable working with new tools and frameworks, and quickly adapting to shifting technical requirements.'
+  },
+  {
+    icon: 'Book',
+    title: 'DSA Proficiency',
+    description: 'Strong foundation in data structures and algorithms, regularly practicing on competitive coding platforms.'
+  },
+  {
+    icon: 'Users',
+    title: 'Team Collaboration',
+    description: 'Collaborated on university and hackathon projects, fostering strong communication and delivery in team environments.'
+  }
+]
+
   };
 
   const itemVariants = {

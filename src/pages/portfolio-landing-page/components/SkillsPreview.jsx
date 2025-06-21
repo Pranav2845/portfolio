@@ -3,67 +3,54 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon';
 
+const skillCategories = [
+  {
+    title: 'Frontend Development',
+    icon: 'Monitor',
+    skills: [
+      { name: 'React.js', image: '/assets/images/react_logo.png' },
+      { name: 'JavaScript/ES6+', image: '/assets/images/js_logo.webp' },
+      { name: 'TypeScript', image: '/assets/images/typescript_logo.webp' },
+      { name: 'HTML5', image: '/assets/images/html_logo.webp' },
+      { name: 'CSS3', image: '/assets/images/css_logo.webp' },
+      { name: 'Tailwind CSS', image: '/assets/images/tailwindcss_logo.webp' }
+    ]
+  },
+  {
+    title: 'Backend Development',
+    icon: 'Server',
+    skills: [
+      { name: 'Node.js', image: '/assets/images/node_logo.webp' },
+      { name: 'Python', image: '/assets/images/python_logo.webp' },
+      { name: 'SQL', image: '/assets/images/sql_logo.webp' },
+      { name: 'MongoDB', image: '/assets/images/mongodb_logo.webp' }
+    ]
+  },
+  {
+    title: 'Development Tools & Libraries',
+    icon: 'Box',
+    skills: [
+      { name: 'Git', image: '/assets/images/git_logo.webp' },
+      { name: 'Docker', image: '/assets/images/docker_logo.webp' },
+      { name: 'NumPy', image: '/assets/images/numpy_logo.webp' },
+      { name: 'Pandas', image: '/assets/images/pandas_logo.webp' }
+    ]
+  }
+];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut'
+    }
+  }
+};
+
 const SkillsPreview = () => {
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: 'Monitor',
-      skills: [
-        { name: 'React', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'Next.js', level: 88 },
-        { name: 'Tailwind CSS', level: 92 }
-      ],
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Backend Development',
-      icon: 'Server',
-      skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Python', level: 80 },
-        { name: 'PostgreSQL', level: 82 },
-        { name: 'MongoDB', level: 78 }
-      ],
-      color: 'bg-green-500'
-    },
-    {
-      title: 'Design & Tools',
-      icon: 'Palette',
-      skills: [
-        { name: 'Figma', level: 90 },
-        { name: 'Adobe XD', level: 85 },
-        { name: 'Git', level: 95 },
-        { name: 'Docker', level: 75 }
-      ],
-      color: 'bg-purple-500'
-    }
-  ];
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const progressVariants = {
-    hidden: { width: 0 },
-    visible: (level) => ({
-      width: `${level}%`,
-      transition: {
-        duration: 1.5,
-        ease: "easeOut",
-        delay: 0.5
-      }
-    })
-  };
-
   return (
     <div className="space-y-12">
       {/* Header */}
@@ -72,7 +59,7 @@ const SkillsPreview = () => {
           Skills & Expertise
         </h2>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-          A comprehensive overview of my technical skills and proficiency levels across different domains
+          A visual overview of my technical expertise and tools I work with
         </p>
       </motion.div>
 
@@ -87,8 +74,8 @@ const SkillsPreview = () => {
           >
             {/* Category Header */}
             <div className="flex items-center space-x-3 mb-6">
-              <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center`}>
-                <Icon name={category.icon} size={24} color="white" strokeWidth={2} />
+              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                <Icon name={category.icon} size={24} className="text-gray-700" strokeWidth={2} />
               </div>
               <h3 className="text-xl font-semibold text-primary">
                 {category.title}
@@ -96,27 +83,16 @@ const SkillsPreview = () => {
             </div>
 
             {/* Skills List */}
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {category.skills.map((skill, skillIndex) => (
-                <div key={skillIndex} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium text-text-primary">
-                      {skill.name}
-                    </span>
-                    <span className="text-sm text-text-secondary">
-                      {skill.level}%
-                    </span>
+                <div
+                  key={skillIndex}
+                  className="flex items-center p-2 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-sm transition"
+                >
+                  <div className="w-9 h-9 bg-white border border-gray-300 rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                    <img src={skill.image} alt={skill.name} className="w-6 h-6 object-contain" />
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <motion.div
-                      className={`h-2 ${category.color} rounded-full`}
-                      variants={progressVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      custom={skill.level}
-                    />
-                  </div>
+                  <span className="text-gray-800 text-sm font-medium">{skill.name}</span>
                 </div>
               ))}
             </div>

@@ -29,11 +29,10 @@ const HeroSection = () => {
   };
 
   const socialLinks = [
-    { name: 'Github', icon: 'Github', url: 'https://github.com' },
-    { name: 'LinkedIn', icon: 'Linkedin', url: 'https://linkedin.com' },
-    { name: 'Twitter', icon: 'Twitter', url: 'https://twitter.com' },
-    { name: 'Email', icon: 'Mail', url: 'mailto:john.doe@portfolio.com' }
-  ];
+  { name: 'Github', icon: 'Github', url: 'https://github.com/Pranav2845' },
+  { name: 'LinkedIn', icon: 'Linkedin', url: 'https://www.linkedin.com/in/pranav-pandey001/' },
+  { name: 'Email', icon: 'Mail', url: 'mailto:pranavpandey9550@gmail.com' }
+];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,10 +86,11 @@ const HeroSection = () => {
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-4">
                 Hi, I'm{' '}
-                <span className="text-accent">John Doe</span>
+                <span className="text-accent">Pranav Pandey</span>
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-text-secondary mb-6">
-                Full-Stack Developer & UI/UX Designer
+                Full-Stack Developer & DSA Enthusiast
+
               </h2>
             </motion.div>
 
@@ -98,8 +98,8 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto"
             >
-              I create exceptional digital experiences that combine beautiful design with robust functionality. 
-              Passionate about building products that make a difference in people's lives.
+              A B.Tech student passionate about building scalable web apps and solving real-world problems using code. Focused on writing clean, efficient code and creating meaningful digital experiences.
+
             </motion.p>
 
             {/* CTA Buttons */}

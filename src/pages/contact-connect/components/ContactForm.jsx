@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import Icon from 'components/AppIcon';
 
 const ContactForm = ({ onSubmitSuccess }) => {
@@ -51,7 +52,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
       [name]: value
     }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -62,28 +62,30 @@ const ContactForm = ({ onSubmitSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      
+      const result = await emailjs.send(
+        'service_0oe2avk',
+        'template_sdy5r69',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        },
+        'MuilJYZdKCFcla1TE'
+      );
+
+      console.log('Email sent:', result.text);
+      setFormData({ name: '', email: '', subject: '', message: '' });
       onSubmitSuccess();
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('Email error:', error);
+      alert('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -104,113 +106,42 @@ const ContactForm = ({ onSubmitSuccess }) => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Name Field */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
-            Full Name *
-          </label>
-          <motion.div
-            variants={inputVariants}
-            animate={focusedField === 'name' ? 'focused' : 'unfocused'}
-            transition={{ duration: 0.2 }}
-          >
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              onFocus={() => setFocusedField('name')}
-              onBlur={() => setFocusedField(null)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition ${
-                errors.name ? 'border-error' : 'border-border'
-              }`}
-              placeholder="Enter your full name"
-            />
-          </motion.div>
-          {errors.name && (
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-1 text-sm text-error flex items-center space-x-1"
+        {['name', 'email', 'subject'].map((field) => (
+          <div key={field}>
+            <label htmlFor={field} className="block text-sm font-medium text-primary mb-2">
+              {field.charAt(0).toUpperCase() + field.slice(1)} *
+            </label>
+            <motion.div
+              variants={inputVariants}
+              animate={focusedField === field ? 'focused' : 'unfocused'}
+              transition={{ duration: 0.2 }}
             >
-              <Icon name="AlertCircle" size={16} strokeWidth={2} />
-              <span>{errors.name}</span>
-            </motion.p>
-          )}
-        </div>
-
-        {/* Email Field */}
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
-            Email Address *
-          </label>
-          <motion.div
-            variants={inputVariants}
-            animate={focusedField === 'email' ? 'focused' : 'unfocused'}
-            transition={{ duration: 0.2 }}
-          >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              onFocus={() => setFocusedField('email')}
-              onBlur={() => setFocusedField(null)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition ${
-                errors.email ? 'border-error' : 'border-border'
-              }`}
-              placeholder="Enter your email address"
-            />
-          </motion.div>
-          {errors.email && (
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-1 text-sm text-error flex items-center space-x-1"
-            >
-              <Icon name="AlertCircle" size={16} strokeWidth={2} />
-              <span>{errors.email}</span>
-            </motion.p>
-          )}
-        </div>
-
-        {/* Subject Field */}
-        <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-primary mb-2">
-            Subject *
-          </label>
-          <motion.div
-            variants={inputVariants}
-            animate={focusedField === 'subject' ? 'focused' : 'unfocused'}
-            transition={{ duration: 0.2 }}
-          >
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleInputChange}
-              onFocus={() => setFocusedField('subject')}
-              onBlur={() => setFocusedField(null)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition ${
-                errors.subject ? 'border-error' : 'border-border'
-              }`}
-              placeholder="What's this about?"
-            />
-          </motion.div>
-          {errors.subject && (
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-1 text-sm text-error flex items-center space-x-1"
-            >
-              <Icon name="AlertCircle" size={16} strokeWidth={2} />
-              <span>{errors.subject}</span>
-            </motion.p>
-          )}
-        </div>
+              <input
+                type={field === 'email' ? 'email' : 'text'}
+                id={field}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                onFocus={() => setFocusedField(field)}
+                onBlur={() => setFocusedField(null)}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition ${
+                  errors[field] ? 'border-error' : 'border-border'
+                }`}
+                placeholder={`Enter your ${field}`}
+              />
+            </motion.div>
+            {errors[field] && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-1 text-sm text-error flex items-center space-x-1"
+              >
+                <Icon name="AlertCircle" size={16} strokeWidth={2} />
+                <span>{errors[field]}</span>
+              </motion.p>
+            )}
+          </div>
+        ))}
 
         {/* Message Field */}
         <div>
@@ -257,7 +188,8 @@ const ContactForm = ({ onSubmitSuccess }) => {
           disabled={isSubmitting}
           className={`w-full py-3 px-6 rounded-lg font-medium nav-transition flex items-center justify-center space-x-2 ${
             isSubmitting
-              ? 'bg-accent/50 text-white cursor-not-allowed' :'bg-accent text-white hover:bg-accent/90'
+              ? 'bg-accent/50 text-white cursor-not-allowed'
+              : 'bg-accent text-white hover:bg-accent/90'
           }`}
           whileHover={!isSubmitting ? { scale: 1.02 } : {}}
           whileTap={!isSubmitting ? { scale: 0.98 } : {}}
@@ -280,7 +212,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
         </motion.button>
       </form>
 
-      {/* Form Footer */}
       <div className="mt-6 pt-6 border-t border-border">
         <p className="text-sm text-text-secondary text-center">
           By submitting this form, you agree to be contacted regarding your inquiry.

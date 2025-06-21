@@ -153,32 +153,34 @@ const PortfolioLandingPage = () => {
 
             {/* Social Links */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Connect</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
-                >
-                  <Icon name="Github" size={20} strokeWidth={2} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
-                >
-                  <Icon name="Linkedin" size={20} strokeWidth={2} />
-                </a>
-                <a
-                  href="mailto:contact@portfolio.com"
-                  className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
-                >
-                  <Icon name="Mail" size={20} strokeWidth={2} />
-                </a>
-              </div>
-            </div>
+  <h3 className="text-lg font-semibold">Connect</h3>
+  <div className="flex space-x-4">
+    <a
+      href="https://github.com/Pranav2845"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
+    >
+      <Icon name="Github" size={20} strokeWidth={2} />
+    </a>
+    <a
+  href="https://www.linkedin.com/in/pranav-pandey001"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
+>
+  <Icon name="Linkedin" size={20} strokeWidth={2} />
+</a>
+
+    <a
+      href="mailto:pranavpandey9550@gmail.com"
+      className="w-10 h-10 bg-gray-700 hover:bg-accent rounded-lg flex items-center justify-center nav-transition"
+    >
+      <Icon name="Mail" size={20} strokeWidth={2} />
+    </a>
+  </div>
+</div>
+
           </div>
 
           <div className="border-t border-gray-700 mt-8 pt-8 text-center">

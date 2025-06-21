@@ -7,54 +7,25 @@ const ContactInfo = () => {
     {
       icon: 'Mail',
       label: 'Email',
-      value: 'hello@portfolio.dev',
-      href: 'mailto:hello@portfolio.dev',
-      description: 'Best way to reach me for project inquiries'
+      value: 'pranavpandey9550@gmail.com',
+      href: 'mailto:pranavpandey9550@gmail.com',
     },
     {
       icon: 'Phone',
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-      description: 'Available Mon-Fri, 9AM-6PM EST'
+      value: '9559527484',
+      href: 'tel:9559527484',
     },
     {
       icon: 'MapPin',
       label: 'Location',
-      value: 'San Francisco, CA',
-      href: null,
-      description: 'Open to remote work worldwide'
+      value: 'Greater Noida, India',
+      href: 'https://www.google.com/maps/place/Greater+Noida,+Uttar+Pradesh,+India',
+      description: 'Actively seeking internship and entry-level opportunities in software development.',
     },
-    {
-      icon: 'Calendar',
-      label: 'Schedule',
-      value: 'Book a Meeting',
-      href: 'https://calendly.com/portfolio-dev',
-      description: '30-min consultation calls available'
-    }
   ];
 
-  const downloadVCard = () => {
-    const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:Portfolio Developer
-ORG:Portfolio Development
-EMAIL:hello@portfolio.dev
-TEL:+15551234567
-ADR:;;San Francisco;CA;;94102;USA
-URL:https://portfolio.dev
-END:VCARD`;
 
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'portfolio-contact.vcf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
-  };
 
   return (
     <div className="bg-surface rounded-xl p-6 lg:p-8">
@@ -97,31 +68,9 @@ END:VCARD`;
         ))}
       </div>
 
-      {/* Download vCard */}
-      <div className="mt-8 pt-6 border-t border-border">
-        <motion.button
-          onClick={downloadVCard}
-          className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-background border border-border rounded-lg hover:bg-accent hover:text-white hover:border-accent nav-transition"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Icon name="Download" size={18} strokeWidth={2} />
-          <span className="font-medium">Save Contact Info</span>
-        </motion.button>
-      </div>
+      
 
-      {/* Office Hours */}
-      <div className="mt-6 p-4 bg-background rounded-lg border border-border">
-        <div className="flex items-center space-x-2 mb-2">
-          <Icon name="Clock" size={16} className="text-accent" strokeWidth={2} />
-          <h4 className="text-sm font-medium text-primary">Office Hours</h4>
-        </div>
-        <div className="text-sm text-text-secondary space-y-1">
-          <p>Monday - Friday: 9:00 AM - 6:00 PM (EST)</p>
-          <p>Saturday: 10:00 AM - 2:00 PM (EST)</p>
-          <p>Sunday: Closed</p>
-        </div>
-      </div>
+     
     </div>
   );
 };

@@ -1,49 +1,67 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import Icon from 'components/AppIcon';
 
+const SERVICE_ID = 'service_0oe2avk';
+const TEMPLATE_ID = 'template_sdy5r69';
+const PUBLIC_KEY = 'MuilJYZdKCFcla1TE';
+
 const ContactPreview = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
     {
       icon: 'Mail',
       title: 'Email',
-      value: 'john.doe@portfolio.com',
-      link: 'mailto:john.doe@portfolio.com'
+      value: 'pranavpandey9550@gmail.com',
+      link: 'mailto:pranavpandey9550@gmail.com'
     },
     {
       icon: 'Phone',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '9559527484',
+      link: 'tel:9559527484'
     },
     {
       icon: 'MapPin',
       title: 'Location',
-      value: 'San Francisco, CA',
-      link: 'https://maps.google.com?q=San+Francisco,+CA'
+      value: 'Greater Noida, UP',
+      link: 'https://maps.google.com?q=Greater+Noida,+UP'
     }
   ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message
+        },
+        PUBLIC_KEY
+      );
+
+      alert("Message sent successfully!");
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error("Email sending error:", error);
+      alert("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const itemVariants = {
@@ -51,46 +69,35 @@ const ContactPreview = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.6, ease: 'easeOut' }
     }
   };
 
   return (
     <div className="space-y-12">
-      {/* Header */}
       <motion.div variants={itemVariants} className="text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-          Let's Work Together
-        </h2>
+        <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">Let's Work Together</h2>
         <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-          Have a project in mind? I'd love to hear about it. Let's discuss how we can bring your ideas to life.
+          Have a project in mind? I'd love to hear about it. Let's collaborate to bring your ideas to life.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Information */}
         <motion.div variants={itemVariants} className="space-y-8">
           <div>
-            <h3 className="text-2xl font-semibold text-primary mb-6">
-              Get In Touch
-            </h3>
+            <h3 className="text-2xl font-semibold text-primary mb-6">Get In Touch</h3>
             <p className="text-text-secondary mb-8">
-              I'm always open to discussing new opportunities, creative projects, or potential collaborations. 
-              Feel free to reach out through any of the channels below.
+              Open to freelance projects, internships, and collaborations. Feel free to reach out through any of the methods below.
             </p>
           </div>
 
-          {/* Contact Methods */}
           <div className="space-y-6">
             {contactInfo.map((contact, index) => (
               <motion.a
                 key={index}
                 href={contact.link}
-                target={contact.title === 'Location' ? '_blank' : undefined}
-                rel={contact.title === 'Location' ? 'noopener noreferrer' : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center space-x-4 p-4 bg-surface rounded-lg hover:bg-gray-100 nav-transition group"
                 whileHover={{ x: 5 }}
               >
@@ -105,15 +112,12 @@ const ContactPreview = () => {
             ))}
           </div>
 
-          {/* Social Links */}
           <div className="pt-6 border-t border-border">
             <h4 className="font-medium text-primary mb-4">Follow Me</h4>
             <div className="flex space-x-4">
               {[
-                { name: 'GitHub', icon: 'Github', url: 'https://github.com' },
-                { name: 'LinkedIn', icon: 'Linkedin', url: 'https://linkedin.com' },
-                { name: 'Twitter', icon: 'Twitter', url: 'https://twitter.com' },
-                { name: 'Dribbble', icon: 'Dribbble', url: 'https://dribbble.com' }
+                { name: 'GitHub', icon: 'Github', url: 'https://github.com/Pranav2845' },
+                { name: 'LinkedIn', icon: 'Linkedin', url: 'https://www.linkedin.com/in/pranav-pandey001/' },
               ].map((social) => (
                 <a
                   key={social.name}
@@ -130,17 +134,12 @@ const ContactPreview = () => {
           </div>
         </motion.div>
 
-        {/* Quick Contact Form */}
         <motion.div variants={itemVariants} className="bg-surface p-8 rounded-xl">
-          <h3 className="text-2xl font-semibold text-primary mb-6">
-            Send a Message
-          </h3>
-          
+          <h3 className="text-2xl font-semibold text-primary mb-6">Send a Message</h3>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
-                Your Name
-              </label>
+              <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">Your Name</label>
               <input
                 type="text"
                 id="name"
@@ -154,9 +153,7 @@ const ContactPreview = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
-                Email Address
-              </label>
+              <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">Email Address</label>
               <input
                 type="email"
                 id="email"
@@ -170,9 +167,7 @@ const ContactPreview = () => {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
-                Message
-              </label>
+              <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -187,17 +182,27 @@ const ContactPreview = () => {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition group"
+              disabled={isSubmitting}
+              className={`w-full flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium nav-transition ${
+                isSubmitting ? 'bg-accent/60 cursor-not-allowed' : 'bg-accent hover:bg-accent/90'
+              }`}
             >
-              <Icon name="Send" size={18} className="mr-2 group-hover:scale-110 nav-transition" strokeWidth={2} />
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-white border-opacity-50 mr-2" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Icon name="Send" size={18} className="mr-2 group-hover:scale-110 nav-transition" strokeWidth={2} />
+                  Send Message
+                </>
+              )}
             </button>
           </form>
 
           <div className="mt-6 pt-6 border-t border-border text-center">
-            <p className="text-sm text-text-secondary mb-4">
-              Prefer a more detailed conversation?
-            </p>
+            <p className="text-sm text-text-secondary mb-4">Prefer a more detailed conversation?</p>
             <Link
               to="/contact-connect"
               className="inline-flex items-center text-accent hover:text-accent/80 nav-transition"

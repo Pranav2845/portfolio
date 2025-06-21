@@ -3,118 +3,72 @@ import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon';
 import Image from 'components/AppImage';
 
-const CertificationsSection = ({ isVisible }) => {
+const CertificationsSection = () => {
   const certifications = [
     {
       id: 1,
-      title: 'AWS Certified Solutions Architect - Professional',
-      issuer: 'Amazon Web Services',
-      issueDate: 'March 2023',
-      expiryDate: 'March 2026',
-      credentialId: 'AWS-PSA-2023-001234',
-      logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=100&h=100&fit=crop',
-      description: 'Advanced certification demonstrating expertise in designing distributed applications and systems on the AWS platform.',
-      skills: ['Cloud Architecture', 'AWS Services', 'Security', 'Cost Optimization', 'Migration Strategies'],
-      verificationUrl: 'https://aws.amazon.com/verification',
-      status: 'Active'
+      title: 'Oracle Academy Java for AP Computer Science A',
+      issuer: 'Oracle Academy',
+      issueDate: 'January 2024',
+      logo: '/assets/images/oracle_logo.png',
+      description:
+        'Comprehensive training in Java programming fundamentals and object-oriented principles aligned with AP CS A curriculum.',
+      skills: ['Java', 'OOP', 'Problem Solving', 'Code Debugging'],
+      verificationUrl:
+        'https://drive.google.com/file/d/18qj8_94DAS5IBdfcKaGcwVZ3Ww5GCdLO/view?usp=drivesdk',
     },
     {
       id: 2,
-      title: 'Google Cloud Professional Cloud Architect',
-      issuer: 'Google Cloud',
-      issueDate: 'January 2023',
-      expiryDate: 'January 2025',
-      credentialId: 'GCP-PCA-2023-005678',
-      logo: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=100&h=100&fit=crop',
-      description: 'Professional certification for designing and managing robust, secure, scalable, and dynamic solutions on Google Cloud.',
-      skills: ['GCP Services', 'Kubernetes', 'DevOps', 'Data Engineering', 'Security'],
-      verificationUrl: 'https://cloud.google.com/certification',
-      status: 'Active'
+      title: 'Software Engineering (Elite)',
+      issuer: 'NPTEL / IIT Kharagpur',
+      issueDate: 'October 2024',
+      logo: '/assets/images/nptel_logo.webp',
+      description:
+        'Elite certificate for successfully completing NPTEL Software Engineering course with rigorous assignments and proctored exam.',
+      skills: ['Software Design', 'Testing', 'Project Management', 'Agile'],
+      verificationUrl:
+        'https://archive.nptel.ac.in/content/noc/NOC24/SEM2/Ecertificates/106/noc24-cs119/Course/NPTEL24CS119S95140046704203207.pdf',
     },
     {
       id: 3,
-      title: 'Certified Kubernetes Administrator (CKA)',
-      issuer: 'Cloud Native Computing Foundation',
-      issueDate: 'September 2022',
-      expiryDate: 'September 2025',
-      credentialId: 'CKA-2022-009876',
-      logo: 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=100&h=100&fit=crop',
-      description: 'Hands-on certification demonstrating skills in Kubernetes administration, including installation, configuration, and management.',
-      skills: ['Kubernetes', 'Container Orchestration', 'DevOps', 'Linux Administration', 'Networking'],
-      verificationUrl: 'https://training.linuxfoundation.org/certification',
-      status: 'Active'
+      title: 'The Complete Full-Stack Web Development Bootcamp',
+      issuer: 'Udemy',
+      issueDate: 'June 2025',
+      logo: '/assets/images/udemy.webp',
+      description:
+        'Completed a 61.5-hour full-stack web development bootcamp instructed by Dr. Angela Yu. Covered HTML, CSS, JavaScript, Node.js, Express, MongoDB, and more.',
+      skills: [
+        'HTML',
+        'CSS',
+        'JavaScript',
+        'Node.js',
+        'Express',
+        'MongoDB',
+        'SQL',
+        'Full-Stack Development',
+      ],
+      verificationUrl:
+        'https://drive.google.com/file/d/1Phw0_w0lbWUbluWglsfXCdK_C-csX5H1/view?usp=drive_link',
     },
     {
       id: 4,
-      title: 'Meta Frontend Developer Professional Certificate',
-      issuer: 'Meta (Facebook)',
-      issueDate: 'June 2022',
-      expiryDate: 'No Expiry',
-      credentialId: 'META-FE-2022-112233',
-      logo: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=100&h=100&fit=crop',
-      description: 'Comprehensive program covering modern frontend development practices, React ecosystem, and industry best practices.',
-      skills: ['React', 'JavaScript', 'HTML/CSS', 'Version Control', 'UI/UX Principles'],
-      verificationUrl: 'https://www.coursera.org/professional-certificates',
-      status: 'Active'
+      title: 'Database Programming with SQL',
+      issuer: 'Oracle Academy',
+      issueDate: 'January 2024',
+      logo: '/assets/images/oracle_logo.png',
+      description:
+        "Completed Oracle Academy's \"Database Programming with SQL\" course, covering core concepts of relational databases, SQL queries, and database development best practices.",
+      skills: ['SQL', 'Database Design', 'Queries', 'Data Manipulation'],
+      verificationUrl:
+        'https://drive.google.com/file/d/1PucPefkGEj_Db7pF6GSw_ga1siG2s7-u/view?usp=drive_link',
     },
-    {
-      id: 5,
-      title: 'Certified Scrum Master (CSM)',
-      issuer: 'Scrum Alliance',
-      issueDate: 'March 2021',
-      expiryDate: 'March 2024',
-      credentialId: 'CSM-2021-445566',
-      logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=100&h=100&fit=crop',
-      description: 'Certification in Scrum framework and agile project management methodologies for effective team leadership.',
-      skills: ['Scrum Framework', 'Agile Methodologies', 'Team Leadership', 'Project Management', 'Facilitation'],
-      verificationUrl: 'https://www.scrumalliance.org/community/profile',
-      status: 'Expiring Soon'
-    },
-    {
-      id: 6,
-      title: 'MongoDB Certified Developer Associate',
-      issuer: 'MongoDB University',
-      issueDate: 'November 2020',
-      expiryDate: 'November 2023',
-      credentialId: 'MDB-DEV-2020-778899',
-      logo: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=100&h=100&fit=crop',
-      description: 'Certification demonstrating proficiency in MongoDB database design, development, and administration.',
-      skills: ['MongoDB', 'NoSQL Databases', 'Data Modeling', 'Aggregation Framework', 'Performance Optimization'],
-      verificationUrl: 'https://university.mongodb.com/certification',
-      status: 'Expired'
-    }
   ];
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Active':
-        return 'bg-success/10 text-success border-success/20';
-      case 'Expiring Soon':
-        return 'bg-warning/10 text-warning border-warning/20';
-      case 'Expired':
-        return 'bg-error/10 text-error border-error/20';
-      default:
-        return 'bg-surface text-text-secondary border-border';
-    }
-  };
-
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'Active':
-        return 'CheckCircle';
-      case 'Expiring Soon':
-        return 'Clock';
-      case 'Expired':
-        return 'XCircle';
-      default:
-        return 'Circle';
-    }
-  };
 
   return (
     <motion.div
+      id="certifications" // ✅ IMPORTANT: This allows navigation via #certifications
       initial={{ opacity: 0, y: 30 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.1 }}
       className="bg-surface rounded-xl p-8 border border-border"
     >
@@ -125,32 +79,31 @@ const CertificationsSection = ({ isVisible }) => {
         <h2 className="text-fluid-2xl font-bold text-primary">Professional Certifications</h2>
       </div>
 
-      {/* Certifications Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {certifications.map((cert, index) => (
-          <motion.div
+          <motion.a
             key={cert.id}
+            href={cert.verificationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-            className="bg-background rounded-lg p-6 border border-border hover:border-accent/30 nav-transition"
+            className="bg-background rounded-lg p-6 border border-border hover:border-accent/30 nav-transition block"
           >
-            {/* Header */}
             <div className="flex items-start space-x-4 mb-4">
               <div className="w-16 h-16 rounded-lg overflow-hidden border border-border flex-shrink-0">
                 <Image
                   src={cert.logo}
                   alt={`${cert.issuer} logo`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-primary leading-tight">{cert.title}</h3>
-                  <span className={`px-2 py-1 rounded text-xs font-medium border ${getStatusColor(cert.status)}`}>
-                    <Icon name={getStatusIcon(cert.status)} size={12} className="inline mr-1" strokeWidth={2} />
-                    {cert.status}
-                  </span>
+                  <h3 className="text-lg font-semibold text-primary leading-tight">
+                    {cert.title}
+                  </h3>
                 </div>
                 <p className="text-accent font-medium text-sm">{cert.issuer}</p>
                 <div className="flex flex-col gap-1 mt-2 text-xs text-text-secondary">
@@ -158,20 +111,14 @@ const CertificationsSection = ({ isVisible }) => {
                     <Icon name="Calendar" size={12} strokeWidth={2} />
                     <span>Issued: {cert.issueDate}</span>
                   </span>
-                  <span className="flex items-center space-x-1">
-                    <Icon name="Clock" size={12} strokeWidth={2} />
-                    <span>Expires: {cert.expiryDate}</span>
-                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Description */}
-            <p className="text-text-secondary text-sm mb-4 leading-relaxed">
+            <p className="text-text-secondary text-sm mb-4 leading-relaxed min-h-[72px]">
               {cert.description}
             </p>
 
-            {/* Skills */}
             <div className="mb-4">
               <h4 className="text-sm font-semibold text-primary mb-2">Skills Validated</h4>
               <div className="flex flex-wrap gap-1">
@@ -185,66 +132,29 @@ const CertificationsSection = ({ isVisible }) => {
                 ))}
               </div>
             </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-border">
-              <div className="text-xs text-text-secondary">
-                <span className="font-medium">ID:</span> {cert.credentialId}
-              </div>
-              <a
-                href={cert.verificationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1 text-xs text-accent hover:text-accent/80 nav-transition"
-              >
-                <Icon name="ExternalLink" size={12} strokeWidth={2} />
+            <div className="flex justify-end pt-3 border-t border-border mt-4">
+              <span className="inline-flex items-center space-x-1 text-[10px] text-accent hover:text-accent/80">
+                <Icon name="ExternalLink" size={10} strokeWidth={1.5} />
                 <span>Verify</span>
-              </a>
+              </span>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
 
-      {/* Certification Summary */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
         className="bg-background rounded-lg p-6 border border-border"
       >
-        <h3 className="text-lg font-semibold text-primary mb-4 flex items-center space-x-2">
-          <Icon name="BarChart3" size={20} className="text-accent" strokeWidth={2} />
-          <span>Certification Overview</span>
-        </h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="text-center p-4 bg-surface rounded-lg">
-            <div className="text-2xl font-bold text-accent mb-1">6</div>
-            <div className="text-sm text-text-secondary">Total Certifications</div>
-          </div>
-          <div className="text-center p-4 bg-surface rounded-lg">
-            <div className="text-2xl font-bold text-success mb-1">4</div>
-            <div className="text-sm text-text-secondary">Currently Active</div>
-          </div>
-          <div className="text-center p-4 bg-surface rounded-lg">
-            <div className="text-2xl font-bold text-warning mb-1">1</div>
-            <div className="text-sm text-text-secondary">Expiring Soon</div>
-          </div>
-          <div className="text-center p-4 bg-surface rounded-lg">
-            <div className="text-2xl font-bold text-primary mb-1">2024</div>
-            <div className="text-sm text-text-secondary">Latest Certification</div>
-          </div>
-        </div>
-
-        <div className="p-4 bg-accent/5 rounded-lg border border-accent/20">
+        <div className="p-0">
           <h4 className="text-sm font-semibold text-primary mb-2 flex items-center space-x-2">
             <Icon name="Target" size={16} className="text-accent" strokeWidth={2} />
             <span>Commitment to Excellence</span>
           </h4>
           <p className="text-sm text-text-secondary leading-relaxed">
-            I maintain active certifications to ensure my skills remain current with industry standards. 
-            These certifications represent not just knowledge acquisition, but a commitment to professional 
-            excellence and continuous improvement in the rapidly evolving technology landscape.
+            The certifications listed here cover a range of foundational and applied topics in software development. They serve as documented evidence of coursework completed across programming, software engineering, and full-stack web development.
           </p>
         </div>
       </motion.div>
@@ -253,3 +163,4 @@ const CertificationsSection = ({ isVisible }) => {
 };
 
 export default CertificationsSection;
+
