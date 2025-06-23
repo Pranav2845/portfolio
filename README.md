@@ -33,11 +33,4 @@ A **full-featured online chess game** developed for interactive, real-time play.
 ---
 
 
-## 🚀 Getting Started
-
-If you want to run this portfolio locally:
-
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/Pranav2845/portfolio.git
 
