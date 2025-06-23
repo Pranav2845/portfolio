@@ -1,107 +1,43 @@
-# React
+# 👋 Pranav Pandey — Portfolio
 
-A modern React-based project utilizing the latest frontend technologies and tools for building responsive web applications.
+Welcome to my **Personal Portfolio**!  
+This website showcases my projects, technical skills, and experience as a Computer Science student passionate about **web development**, **software engineering**, and **building impactful applications**.
 
-## 🚀 Features
+---
 
-- **React 18** - React version with improved rendering and concurrent features
-- **Vite** - Lightning-fast build tool and development server
-- **Redux Toolkit** - State management with simplified Redux setup
-- **TailwindCSS** - Utility-first CSS framework with extensive customization
-- **React Router v6** - Declarative routing for React applications
-- **Data Visualization** - Integrated D3.js and Recharts for powerful data visualization
-- **Form Management** - React Hook Form for efficient form handling
-- **Animation** - Framer Motion for smooth UI animations
-- **Testing** - Jest and React Testing Library setup
+## 🌟 Features
+- 👤 **About Me** — A B.Tech student passionate about building scalable web apps and solving real-world problems using code. Focused on writing clean, efficient code and creating meaningful digital experiences.
+## 💻 Projects
 
-## 📋 Prerequisites
+#### 🎯 [CodeTracker](https://github.com/Pranav2845/code_tracker.git)
+A **web application** for competitive programming enthusiasts to track and analyze their coding performance across platforms.  
+- 📊 Aggregates user profiles and submission data from **LeetCode**, **Codeforces**, and **Coding Ninjas**.  
+- ⚡ Provides **live data fetching** for coding stats and problem-solving history.  
+- 🏆 Enables seamless review of performance across platforms to help identify strengths and areas for improvement.
 
-- Node.js (v14.x or higher)
-- npm or yarn
+#### ♟️ [CheckMate](https://github.com/Pranav2845/CheckMate.git)  
+A **full-featured online chess game** developed for interactive, real-time play.  
+- 👥 Enables two players to compete in a browser-based environment.  
+- ♞ Implements core chess mechanics such as move validation, check detection, and checkmate.  
+- 🌐 Created using **modern frontend technologies** for a seamless user experience.
 
-## 🛠️ Installation
+---
 
-1. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-   
-2. Start the development server:
-   ```bash
-   npm start
-   # or
-   yarn start
-   ```
+## 🛠️ Technologies Used
+- **HTML5 / CSS3 / JavaScript**
+- **React / Tailwind CSS / Bootstrap**
+- **Node.js / Express.js**
+- **Git / GitHub**
+- **Deployment Services**  Vercel
 
-## 📁 Project Structure
-
-```
-react_app/
-├── public/             # Static assets
-├── src/
-│   ├── components/     # Reusable UI components
-│   ├── pages/          # Page components
-│   ├── styles/         # Global styles and Tailwind configuration
-│   ├── App.jsx         # Main application component
-│   ├── Routes.jsx      # Application routes
-│   └── index.jsx       # Application entry point
-├── .env                # Environment variables
-├── index.html          # HTML template
-├── package.json        # Project dependencies and scripts
-├── tailwind.config.js  # Tailwind CSS configuration
-└── vite.config.js      # Vite configuration
-```
-
-## 🧩 Adding Routes
-
-To add new routes to the application, update the `Routes.jsx` file:
-
-```jsx
-import { useRoutes } from "react-router-dom";
-import HomePage from "pages/HomePage";
-import AboutPage from "pages/AboutPage";
-
-const ProjectRoutes = () => {
-  let element = useRoutes([
-    { path: "/", element: <HomePage /> },
-    { path: "/about", element: <AboutPage /> },
-    // Add more routes as needed
-  ]);
-
-  return element;
-};
-```
-
-## 🎨 Styling
-
-This project uses Tailwind CSS for styling. The configuration includes:
-
-- Forms plugin for form styling
-- Typography plugin for text styling
-- Aspect ratio plugin for responsive elements
-- Container queries for component-specific responsive design
-- Fluid typography for responsive text
-- Animation utilities
-
-## 📱 Responsive Design
-
-The app is built with responsive design using Tailwind CSS breakpoints.
+---
 
 
-## 📦 Deployment
+## 🚀 Getting Started
 
-Build the application for production:
+If you want to run this portfolio locally:
 
+### 1️⃣ Clone the Repository
 ```bash
-npm run build
-```
+git clone https://github.com/Pranav2845/portfolio.git
 
-## 🙏 Acknowledgments
-
-- Built with [Rocket.new](https://rocket.new)
-- Powered by React and Vite
-- Styled with Tailwind CSS
-
-Built with ❤️ on Rocket.new
