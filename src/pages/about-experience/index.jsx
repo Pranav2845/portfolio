@@ -122,59 +122,60 @@ const AboutExperience = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
-          {/* Sidebar Navigation */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
-              <h3 className="text-lg font-semibold text-primary mb-4">Quick Navigation</h3>
-              <nav className="space-y-2">
-                {sections.map((section) => (
-                  <button
-                    key={section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition ${
-                      activeSection === section.id
-                        ? 'bg-accent text-white'
-                        : 'text-text-secondary hover:text-accent hover:bg-background'
-                    }`}
-                  >
-                    <Icon 
-                      name={section.icon} 
-                      size={18} 
-                      strokeWidth={2}
-                      color={activeSection === section.id ? 'white' : 'currentColor'} 
-                    />
-                    <span className="text-sm font-medium">{section.label}</span>
-                  </button>
-                ))}
-              </nav>
+      {/* Sidebar Navigation */}
+<div className="lg:col-span-1">
+  <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
+    <h3 className="text-lg font-semibold text-primary mb-4">Quick Navigation</h3>
+    <nav className="space-y-2">
+      {sections.map((section) => (
+        <button
+          key={section.id}
+          onClick={() => scrollToSection(section.id)}
+          className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition ${
+            activeSection === section.id
+              ? 'bg-accent text-white'
+              : 'text-text-secondary hover:text-accent hover:bg-background'
+          }`}
+        >
+          <Icon
+            name={section.icon}
+            size={18}
+            strokeWidth={2}
+            color={activeSection === section.id ? 'white' : 'currentColor'} 
+          />
+          <span className="text-sm font-medium">{section.label}</span>
+        </button>
+      ))}
+    </nav>
 
-              {/* Professional Info */}
-              <div className="mt-8 text-center">
-                <h4 className="text-lg font-semibold text-primary mb-2">Pranav Pandey</h4>
-                <p className="text-sm text-text-secondary mb-4">Code Enthusiast</p>
-                
-                {/* Social Links */}
-                <div className="flex justify-center space-x-3">
-                  <a
-                    href="https://www.linkedin.com/in/pranav-pandey001/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
-                  >
-                    <Icon name="Linkedin" size={16} strokeWidth={2} />
-                  </a>
-                  <a
-                    href="https://github.com/Pranav2845"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
-                  >
-                    <Icon name="Github" size={16} strokeWidth={2} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+    {/* Professional Info */}
+    <div className="mt-8 text-center">
+      <h4 className="text-lg font-semibold text-primary mb-2">Pranav Pandey</h4>
+      <p className="text-sm text-text-secondary mb-4">Code Enthusiast</p>
+      <div className="flex justify-center space-x-3">
+        <a
+          href="https://www.linkedin.com/in/pranav-pandey001/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+        >
+          <Icon name="Linkedin" size={16} strokeWidth={2} />
+        </a>
+        <a
+          href="https://github.com/Pranav2845"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+        >
+          <Icon name="Github" size={16} strokeWidth={2} />
+        </a>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
 
           {/* Main Content */}
           <div className="lg:col-span-3 space-y-16">
