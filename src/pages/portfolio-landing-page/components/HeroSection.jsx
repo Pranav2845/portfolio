@@ -84,10 +84,10 @@ const HeroSection = () => {
                 <Icon name="Sparkles" size={16} className="mr-2" strokeWidth={2} />
                 Available for new opportunities
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-4">
-                Hi, I'm{' '}
-                <span className="text-accent">Pranav Pandey</span>
-              </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-700 dark:text-slate-100 mb-4">
+  Hi, I'm <span className="text-accent">Pranav Pandey</span>
+</h1>
+
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-text-secondary mb-6">
                 Full-Stack Developer & DSA Enthusiast
 
