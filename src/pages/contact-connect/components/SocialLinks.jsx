@@ -8,17 +8,15 @@ const SocialLinks = () => {
       name: 'LinkedIn',
       icon: 'Linkedin',
       url: 'https://www.linkedin.com/in/pranav-pandey001/',
-      color: 'hover:text-blue-600',
-      bgColor: 'hover:bg-blue-50',
-      description: 'Professional network and career updates'
+      hoverColor: 'hover:text-blue-400',
+      description: 'Professional network and career updates',
     },
     {
       name: 'GitHub',
       icon: 'Github',
       url: 'https://github.com/Pranav2845',
-      color: 'hover:text-gray-900',
-      bgColor: 'hover:bg-gray-50',
-      description: 'Code repositories and open source projects'
+      hoverColor: 'hover:text-gray-200',
+      description: 'Code repositories and open source projects',
     },
   ];
 
@@ -26,10 +24,8 @@ const SocialLinks = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
@@ -37,17 +33,15 @@ const SocialLinks = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
-    <div className="bg-surface rounded-xl p-6 lg:p-8">
+    <div className="bg-surface rounded-xl p-6 lg:p-8 border border-border">
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-primary mb-2">Connect on Social</h2>
-        <p className="text-text-secondary">
-          Follow my work and connect across different platforms.
-        </p>
+        <h2 className="text-2xl font-semibold text-white mb-2">Connect on Social</h2>
+        <p className="text-white/80">Follow my work and connect across different platforms.</p>
       </div>
 
       <motion.div
@@ -62,31 +56,33 @@ const SocialLinks = () => {
             href={platform.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group flex items-center space-x-3 p-4 bg-background border border-border rounded-lg nav-transition ${platform.bgColor} hover:border-current`}
+            className={`group flex items-center space-x-3 p-4 bg-background border border-border rounded-lg nav-transition hover:border-accent/40`}
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className={`flex-shrink-0 w-10 h-10 bg-surface group-hover:bg-white rounded-lg flex items-center justify-center nav-transition`}>
-              <Icon 
-                name={platform.icon} 
-                size={20} 
-                className={`text-text-secondary group-hover:text-current nav-transition ${platform.color}`}
-                strokeWidth={2} 
+            <div className="flex-shrink-0 w-10 h-10 bg-surface group-hover:bg-accent rounded-lg flex items-center justify-center nav-transition">
+              <Icon
+                name={platform.icon}
+                size={20}
+                className={`text-white/80 group-hover:text-white ${platform.hoverColor}`}
+                strokeWidth={2}
               />
             </div>
+
             <div className="flex-1 min-w-0">
-              <h3 className={`font-medium text-text-primary group-hover:text-current nav-transition ${platform.color}`}>
+              <h3
+                className={`font-medium text-white group-hover:text-accent nav-transition`}
+              >
                 {platform.name}
               </h3>
-              <p className="text-sm text-text-secondary truncate">
-                {platform.description}
-              </p>
+              <p className="text-sm text-white/70 truncate">{platform.description}</p>
             </div>
-            <Icon 
-              name="ExternalLink" 
-              size={16} 
-              className="text-text-secondary group-hover:text-current nav-transition opacity-0 group-hover:opacity-100" 
+
+            <Icon
+              name="ExternalLink"
+              size={16}
+              className="text-white/50 group-hover:text-accent nav-transition opacity-0 group-hover:opacity-100"
               strokeWidth={2}
             />
           </motion.a>

@@ -13,105 +13,52 @@ const ProjectsGallery = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  // Real projects
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern, responsive e-commerce platform built with React and Node.js featuring real-time inventory management, secure payment processing, and advanced analytics dashboard.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      title: "CodeTracker",
+      description:
+        "Tracks and analyzes competitive programming progress across platforms with a unified dashboard, AI insights, and contest calendar integrations.",
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1600&auto=format&fit=crop",
       category: "web",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      industry: "retail",
+      technologies: [
+        "React","Redux Toolkit","Vite","TailwindCSS","Recharts",
+        "Node.js","Express","MongoDB","Mongoose","Cheerio",
+        "Axios","JWT","Bcrypt","Multer","CLIST API","Gemini API"
+      ],
+      industry: "developer-tools",
       featured: true,
-      completedDate: "2024-01-15"
+      completedDate: "2025-08-15"
     },
     {
       id: 2,
-      title: "Healthcare Management System",
-      description: "Comprehensive healthcare management solution with patient records, appointment scheduling, and telemedicine capabilities designed for modern medical practices.",
-      image: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Synclet",
+      description:
+        "Modern file management app with Appwrite auth, uploads, sharing, sorting, and responsive UI using TailwindCSS + ShadCN. Ships calendar (.ics) utilities.",
+      image:
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1600&auto=format&fit=crop",
       category: "web",
-      technologies: ["Vue.js", "Python", "PostgreSQL", "Docker"],
-      industry: "healthcare",
+      technologies: [
+        "React 19","Next.js 15","TypeScript","Appwrite","TailwindCSS","ShadCN","Calendar/ICS"
+      ],
+      industry: "productivity",
       featured: false,
-      completedDate: "2023-11-20"
+      completedDate: "2025-06-10"
     },
     {
       id: 3,
-      title: "Financial Dashboard",
-      description: "Real-time financial analytics dashboard with interactive charts, portfolio tracking, and automated reporting features for investment management firms.",
-      image: "https://images.pixabay.com/photo/2016/11/27/21/42/stock-1863880_1280.jpg?auto=compress&cs=tinysrgb&w=800",
-      category: "dashboard",
-      technologies: ["React", "D3.js", "Express", "Redis"],
-      industry: "finance",
-      featured: true,
-      completedDate: "2024-02-28"
-    },
-    {
-      id: 4,
-      title: "Learning Management System",
-      description: "Interactive online learning platform with course creation tools, progress tracking, video streaming, and collaborative features for educational institutions.",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      title: "KnightMove",
+      description:
+        "Real-time multiplayer chess with Socket.io, matchmaking, in-game chat, and analysis mode. Built for low latency and clean UX.",
+      image:
+        "https://images.unsplash.com/photo-1529694157871-0e7cefaf6b58?q=80&w=1600&auto=format&fit=crop",
       category: "web",
-      technologies: ["Angular", "Spring Boot", "MySQL", "AWS"],
-      industry: "education",
-      featured: false,
-      completedDate: "2023-09-10"
-    },
-    {
-      id: 5,
-      title: "Task Management Mobile App",
-      description: "Cross-platform mobile application for team collaboration and project management with offline capabilities, push notifications, and real-time synchronization.",
-      image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "mobile",
-      technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-      industry: "productivity",
+      technologies: ["React","Node.js","Express","Socket.io","MongoDB","TailwindCSS"],
+      industry: "gaming",
       featured: true,
-      completedDate: "2024-03-12"
-    },
-    {
-      id: 6,
-      title: "Restaurant POS System",
-      description: "Point-of-sale system for restaurants with order management, inventory tracking, staff scheduling, and customer loyalty program integration.",
-      image: "https://images.pixabay.com/photo/2017-03-27/13/54/bread-2178874_1280.jpg?auto=compress&cs=tinysrgb&w=800",
-      category: "web",
-      technologies: ["React", "Node.js", "SQLite", "Electron"],
-      industry: "hospitality",
-      featured: false,
-      completedDate: "2023-12-05"
-    },
-    {
-      id: 7,
-      title: "IoT Monitoring Dashboard",
-      description: "Real-time IoT device monitoring and control dashboard with predictive analytics, alert systems, and automated device management capabilities.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "dashboard",
-      technologies: ["Vue.js", "Python", "InfluxDB", "MQTT"],
-      industry: "technology",
-      featured: true,
-      completedDate: "2024-01-30"
-    },
-    {
-      id: 8,
-      title: "Social Media Analytics Tool",
-      description: "Comprehensive social media analytics platform with sentiment analysis, engagement tracking, and automated reporting for digital marketing agencies.",
-      image: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "web",
-      technologies: ["React", "Python", "MongoDB", "TensorFlow"],
-      industry: "marketing",
-      featured: false,
-      completedDate: "2023-10-18"
-    },
-    {
-      id: 9,
-      title: "Fitness Tracking App",
-      description: "Mobile fitness application with workout planning, progress tracking, nutrition logging, and social features to motivate users in their fitness journey.",
-      image: "https://images.pixabay.com/photo/2017-08-07/14/02/man-2604149_1280.jpg?auto=compress&cs=tinysrgb&w=800",
-      category: "mobile",
-      technologies: ["Flutter", "Dart", "Firebase", "HealthKit"],
-      industry: "health",
-      featured: true,
-      completedDate: "2024-02-14"
+      completedDate: "2025-07-20"
     }
   ];
 
@@ -125,21 +72,16 @@ const ProjectsGallery = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    
-    // Simulate loading delay
     const timer = setTimeout(() => {
       let filtered = projects;
 
-      // Apply category filter
       if (selectedFilter !== 'all') {
-        if (selectedFilter === 'featured') {
-          filtered = filtered.filter(project => project.featured);
-        } else {
-          filtered = filtered.filter(project => project.category === selectedFilter);
-        }
+        filtered =
+          selectedFilter === 'featured'
+            ? filtered.filter(project => project.featured)
+            : filtered.filter(project => project.category === selectedFilter);
       }
 
-      // Apply search filter
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
         filtered = filtered.filter(project =>
@@ -157,18 +99,9 @@ const ProjectsGallery = () => {
     return () => clearTimeout(timer);
   }, [selectedFilter, searchQuery]);
 
-  const handleFilterChange = (filterId) => {
-    setSelectedFilter(filterId);
-  };
-
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-  };
-
-  const clearFilters = () => {
-    setSelectedFilter('all');
-    setSearchQuery('');
-  };
+  const handleFilterChange = (filterId) => setSelectedFilter(filterId);
+  const handleSearchChange = (query) => setSearchQuery(query);
+  const clearFilters = () => { setSelectedFilter('all'); setSearchQuery(''); };
 
   return (
     <div className="min-h-screen bg-background">
@@ -176,12 +109,11 @@ const ProjectsGallery = () => {
       <div className="bg-surface border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <Breadcrumb />
-          
+
           <div className="text-center mb-8">
-            <h1 className="text-fluid-3xl font-bold text-primary mb-4">
-              Projects Gallery
-            </h1>
-            <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto">
+            {/* match ContactPreview: white title + white/80 sub */}
+            <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">Projects Gallery</h1>
+            <p className="text-lg text-white/80 max-w-3xl mx-auto">
               Explore my portfolio of professional projects spanning web applications, mobile apps, and data dashboards. Each project represents a unique challenge solved with modern technologies and best practices.
             </p>
           </div>
@@ -190,19 +122,19 @@ const ProjectsGallery = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             <div className="text-center p-4 bg-background rounded-lg border border-border">
               <div className="text-2xl font-bold text-accent mb-1">{projects.length}</div>
-              <div className="text-sm text-text-secondary">Total Projects</div>
+              <div className="text-sm text-white/80">Total Projects</div>
             </div>
             <div className="text-center p-4 bg-background rounded-lg border border-border">
               <div className="text-2xl font-bold text-accent mb-1">{projects.filter(p => p.featured).length}</div>
-              <div className="text-sm text-text-secondary">Featured</div>
+              <div className="text-sm text-white/80">Featured</div>
             </div>
             <div className="text-center p-4 bg-background rounded-lg border border-border">
               <div className="text-2xl font-bold text-accent mb-1">{new Set(projects.flatMap(p => p.technologies)).size}</div>
-              <div className="text-sm text-text-secondary">Technologies</div>
+              <div className="text-sm text-white/80">Technologies</div>
             </div>
             <div className="text-center p-4 bg-background rounded-lg border border-border">
               <div className="text-2xl font-bold text-accent mb-1">{new Set(projects.map(p => p.industry)).size}</div>
-              <div className="text-sm text-text-secondary">Industries</div>
+              <div className="text-sm text-white/80">Industries</div>
             </div>
           </div>
         </div>
@@ -213,16 +145,16 @@ const ProjectsGallery = () => {
         {/* Search and Filter Section */}
         <div className="mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
-            <SearchInput 
+            <SearchInput
               value={searchQuery}
               onChange={handleSearchChange}
               placeholder="Search projects by name, technology, or industry..."
             />
-            
+
             {(selectedFilter !== 'all' || searchQuery.trim()) && (
               <button
                 onClick={clearFilters}
-                className="flex items-center space-x-2 px-4 py-2 text-sm text-text-secondary hover:text-accent border border-border rounded-lg hover:border-accent nav-transition lg:flex-shrink-0"
+                className="flex items-center space-x-2 px-4 py-2 text-sm text-white/80 hover:text-accent border border-border rounded-lg hover:border-accent nav-transition lg:flex-shrink-0"
               >
                 <Icon name="X" size={16} strokeWidth={2} />
                 <span>Clear Filters</span>
@@ -239,21 +171,19 @@ const ProjectsGallery = () => {
 
         {/* Results Summary */}
         <div className="flex items-center justify-between mb-8">
-          <div className="text-text-secondary">
+          <div className="text-white/80">
             {isLoading ? (
               <span>Loading projects...</span>
             ) : (
               <span>
                 Showing {filteredProjects.length} of {projects.length} projects
-                {searchQuery.trim() && (
-                  <span> for "{searchQuery}"</span>
-                )}
+                {searchQuery.trim() && <span> for "{searchQuery}"</span>}
               </span>
             )}
           </div>
-          
+
           {!isLoading && filteredProjects.length > 0 && (
-            <div className="hidden sm:flex items-center space-x-2 text-sm text-text-secondary">
+            <div className="hidden sm:flex items-center space-x-2 text-sm text-white/80">
               <Icon name="Grid3X3" size={16} strokeWidth={2} />
               <span>Grid View</span>
             </div>
@@ -290,11 +220,11 @@ const ProjectsGallery = () => {
         ) : (
           <div className="text-center py-16">
             <div className="w-24 h-24 mx-auto mb-6 bg-surface rounded-full flex items-center justify-center">
-              <Icon name="Search" size={32} className="text-text-secondary" strokeWidth={1.5} />
+              <Icon name="Search" size={32} className="text-white/80" strokeWidth={1.5} />
             </div>
-            <h3 className="text-xl font-semibold text-text-primary mb-2">No Projects Found</h3>
-            <p className="text-text-secondary mb-6 max-w-md mx-auto">
-              {searchQuery.trim() 
+            <h3 className="text-xl font-semibold text-white mb-2">No Projects Found</h3>
+            <p className="text-white/80 mb-6 max-w-md mx-auto">
+              {searchQuery.trim()
                 ? `No projects match your search for "${searchQuery}". Try different keywords or clear your filters.`
                 : "No projects match the selected filters. Try selecting different categories."
               }
@@ -312,7 +242,7 @@ const ProjectsGallery = () => {
         {/* Load More Section (for future pagination) */}
         {!isLoading && filteredProjects.length > 0 && filteredProjects.length >= 9 && (
           <div className="text-center mt-12">
-            <button className="inline-flex items-center space-x-2 px-8 py-3 border border-border text-text-secondary hover:text-accent hover:border-accent rounded-lg nav-transition">
+            <button className="inline-flex items-center space-x-2 px-8 py-3 border border-border text-white/80 hover:text-accent hover:border-accent rounded-lg nav-transition">
               <Icon name="Plus" size={18} strokeWidth={2} />
               <span>Load More Projects</span>
             </button>
@@ -324,10 +254,11 @@ const ProjectsGallery = () => {
       <div className="bg-surface border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <h2 className="text-fluid-2xl font-bold text-primary mb-4">
+            {/* match ContactPreview: white title + white/80 sub */}
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
               Ready to Start Your Project?
             </h2>
-            <p className="text-fluid-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
               Let's collaborate to bring your ideas to life. I'm always excited to work on new challenges and create innovative solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -340,7 +271,7 @@ const ProjectsGallery = () => {
               </Link>
               <Link
                 to="/about-experience"
-                className="inline-flex items-center space-x-2 px-8 py-3 border border-border text-text-secondary hover:text-accent hover:border-accent rounded-lg nav-transition"
+                className="inline-flex items-center space-x-2 px-8 py-3 border border-border text-white/80 hover:text-accent hover:border-accent rounded-lg nav-transition"
               >
                 <Icon name="User" size={18} strokeWidth={2} />
                 <span>Learn More About Me</span>

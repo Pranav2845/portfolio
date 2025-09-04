@@ -65,25 +65,26 @@ const ProjectHero = ({ project }) => {
             </span>
           </div>
           
-          <h1 className="text-fluid-3xl font-bold text-primary mb-2">
+          {/* Heading + Subtitle */}
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-2">
             {project.title}
           </h1>
           
-          <p className="text-fluid-lg text-text-secondary mb-6">
+          <p className="text-lg text-gray-300 mb-6">
             {project.subtitle}
           </p>
 
           {/* Project Meta */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div className="flex items-center space-x-2">
-              <Icon name="Clock" size={16} className="text-text-secondary" strokeWidth={2} />
-              <span className="text-text-secondary">Duration:</span>
-              <span className="font-medium text-text-primary">{project.duration}</span>
+              <Icon name="Clock" size={16} className="text-gray-400" strokeWidth={2} />
+              <span className="text-gray-400">Duration:</span>
+              <span className="font-medium text-white">{project.duration}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Icon name="User" size={16} className="text-text-secondary" strokeWidth={2} />
-              <span className="text-text-secondary">Role:</span>
-              <span className="font-medium text-text-primary">{project.role}</span>
+              <Icon name="User" size={16} className="text-gray-400" strokeWidth={2} />
+              <span className="text-gray-400">Role:</span>
+              <span className="font-medium text-white">{project.role}</span>
             </div>
           </div>
         </div>
@@ -107,7 +108,7 @@ const ProjectHero = ({ project }) => {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-text-primary border border-border rounded-lg hover:bg-border/50 nav-transition"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-white border border-border rounded-lg hover:bg-border/50 nav-transition"
             >
               <Icon name="Github" size={18} strokeWidth={2} />
               <span className="font-medium">Source Code</span>
@@ -125,10 +126,10 @@ const ProjectHero = ({ project }) => {
                 });
               } else {
                 navigator.clipboard.writeText(window.location.href);
-                // You could add a toast notification here
+                // TODO: Add toast here
               }
             }}
-            className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-text-primary border border-border rounded-lg hover:bg-border/50 nav-transition"
+            className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-white border border-border rounded-lg hover:bg-border/50 nav-transition"
           >
             <Icon name="Share2" size={18} strokeWidth={2} />
             <span className="font-medium">Share</span>

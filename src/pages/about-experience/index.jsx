@@ -14,105 +14,107 @@ const AboutExperience = () => {
   const [isVisible, setIsVisible] = useState({});
 
   const sections = [
-    { id: 'bio', label: 'About Me', icon: 'User' },
-    { id: 'skills', label: 'Skills', icon: 'Code' },
-    { id: 'education', label: 'Education', icon: 'GraduationCap' },
-    { id: 'certifications', label: 'Certifications', icon: 'Award' },
+    { id: 'bio',            label: 'About Me',        icon: 'User' },
+    { id: 'skills',         label: 'Skills',          icon: 'Code' },
+    { id: 'education',      label: 'Education',       icon: 'GraduationCap' },
+    { id: 'certifications', label: 'Certifications',  icon: 'Award' },
   ];
 
+  // Observe sections for active state + reveal animations
   useEffect(() => {
-    // Intersection Observer for active section highlighting
-    const observerOptions = {
-      threshold: 0.3,
-      rootMargin: '-50px 0px',
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-          setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
-        }
-      });
-    }, observerOptions);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+            setIsVisible((prev) => ({ ...prev, [id]: true }));
+          }
+        });
+      },
+      { threshold: 0.28, rootMargin: '-60px 0px' }
+    );
 
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) observer.observe(element);
+    sections.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Smooth-scroll to hash if present
   useEffect(() => {
-    // Scroll to hash target if present
     if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
+      const el = document.querySelector(location.hash);
+      if (el) {
         const headerHeight = 80;
-        const elementPosition = element.offsetTop - headerHeight;
-
-        window.scrollTo({
-          top: elementPosition,
-          behavior: 'smooth',
-        });
+        const y = el.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
   }, [location]);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
+    const el = document.getElementById(sectionId);
+    if (el) {
       const headerHeight = 80;
-      const elementPosition = element.offsetTop - headerHeight;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth',
-      });
+      const y = el.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      // also update URL hash (no jump)
+      history.replaceState(null, '', `#${sectionId}`);
     }
   };
-  
+
   const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '#';
-    link.download = 'Pranav_Pandey_Resume.pdf';
-    link.click();
+    // point this to your actual resume path under /public
+    const url = '/assets/resume/Pranav_Pandey_Resume.pdf';
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Pranav_Pandey_Resume.pdf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
-  
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Header Spacing */}
+      {/* Header spacer (matches fixed header) */}
       <div className="h-16 lg:h-20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Breadcrumb />
 
         {/* Page Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-fluid-3xl font-bold text-primary mb-4">
+          <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             About Me & Skills
           </h1>
-          <p className="text-fluid-lg text-text-secondary max-w-3xl mx-auto mb-8">
-            Passionate software engineer with expertise in creating innovative web solutions. Discover my journey, skills, and educational background.
+          <p className="text-fluid-lg text-white/80 max-w-3xl mx-auto mb-8">
+            Passionate software engineer with expertise in creating innovative web solutions.
+            Discover my journey, skills, and educational background.
           </p>
-          
-          {/* Action Buttons */}
+
+          {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={handleDownloadResume}
               className="inline-flex items-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
+              aria-label="Download Resume"
             >
               <Icon name="Download" size={20} strokeWidth={2} />
               <span className="font-medium">Download Resume</span>
             </button>
             <Link
               to="/contact-connect"
-              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-text-primary hover:bg-surface rounded-lg nav-transition"
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-white hover:bg-surface rounded-lg nav-transition"
+              aria-label="Get in touch"
             >
               <Icon name="Mail" size={20} strokeWidth={2} />
               <span className="font-medium">Get In Touch</span>
@@ -121,98 +123,102 @@ const AboutExperience = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          
-      {/* Sidebar Navigation */}
-<div className="lg:col-span-1">
-  <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
-    <h3 className="text-lg font-semibold text-primary mb-4">Quick Navigation</h3>
-    <nav className="space-y-2">
-      {sections.map((section) => (
-        <button
-          key={section.id}
-          onClick={() => scrollToSection(section.id)}
-          className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition ${
-            activeSection === section.id
-              ? 'bg-accent text-white'
-              : 'text-text-secondary hover:text-accent hover:bg-background'
-          }`}
-        >
-          <Icon
-            name={section.icon}
-            size={18}
-            strokeWidth={2}
-            color={activeSection === section.id ? 'white' : 'currentColor'} 
-          />
-          <span className="text-sm font-medium">{section.label}</span>
-        </button>
-      ))}
-    </nav>
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24 bg-surface rounded-xl p-6 border border-border">
+              <h3 className="text-lg font-semibold text-white mb-4">Quick Navigation</h3>
+              <nav className="space-y-2" aria-label="About page sections">
+                {sections.map((section) => {
+                  const active = activeSection === section.id;
+                  return (
+                    <button
+                      key={section.id}
+                      onClick={() => scrollToSection(section.id)}
+                      className={`w-full flex items-center space-x-3 p-3 rounded-lg text-left nav-transition
+                        ${active ? 'bg-accent text-white' : 'text-white/80 hover:text-accent hover:bg-background'}
+                      `}
+                      aria-current={active ? 'true' : 'false'}
+                    >
+                      <Icon
+                        name={section.icon}
+                        size={18}
+                        strokeWidth={2}
+                        color={active ? 'white' : 'currentColor'}
+                      />
+                      <span className="text-sm font-medium">{section.label}</span>
+                    </button>
+                  );
+                })}
+              </nav>
 
-    {/* Professional Info */}
-    <div className="mt-8 text-center">
-      <h4 className="text-lg font-semibold text-primary mb-2">Pranav Pandey</h4>
-      <p className="text-sm text-text-secondary mb-4">Code Enthusiast</p>
-      <div className="flex justify-center space-x-3">
-        <a
-          href="https://www.linkedin.com/in/pranav-pandey001/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
-        >
-          <Icon name="Linkedin" size={16} strokeWidth={2} />
-        </a>
-        <a
-          href="https://github.com/Pranav2845"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-8 h-8 bg-background hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
-        >
-          <Icon name="Github" size={16} strokeWidth={2} />
-        </a>
-      </div>
-    </div>
+              {/* Profile / Socials */}
+              <div className="mt-8 text-center">
+                <h4 className="text-lg font-semibold text-white mb-1">Pranav Pandey</h4>
+                <p className="text-sm text-white/80 mb-4">Code Enthusiast</p>
+                <div className="flex justify-center space-x-3">
+                  <a
+                    href="https://www.linkedin.com/in/pranav-pandey001/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-background hover:bg-accent text-white/80 hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                    aria-label="LinkedIn"
+                  >
+                    <Icon name="Linkedin" size={16} strokeWidth={2} />
+                  </a>
+                  <a
+                    href="https://github.com/Pranav2845"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-background hover:bg-accent text-white/80 hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                    aria-label="GitHub"
+                  >
+                    <Icon name="Github" size={16} strokeWidth={2} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-
-  </div>
-</div>
-
-
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-16">
-            <section id="bio">
+          {/* Main content */}
+          <main className="lg:col-span-3 space-y-16">
+            <section id="bio" aria-label="About Me">
               <PersonalBio isVisible={isVisible.bio} />
             </section>
-            <section id="skills">
+
+            <section id="skills" aria-label="Skills">
               <SkillsShowcase isVisible={isVisible.skills} />
             </section>
-            <section id="education">
+
+            <section id="education" aria-label="Education">
               <EducationSection isVisible={isVisible.education} />
             </section>
-            <section id="certifications">
+
+            <section id="certifications" aria-label="Certifications">
               <CertificationsSection isVisible={isVisible.certifications} />
             </section>
-          </div>
+          </main>
         </div>
 
-        {/* Call to Action */}
-        <motion.div 
+        {/* CTA */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="text-center mt-16 py-12 bg-surface rounded-xl border border-border"
         >
-          <h2 className="text-fluid-2xl font-bold text-primary mb-4">
+          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
             Ready to Work Together?
           </h2>
-          <p className="text-fluid-base text-text-secondary mb-8 max-w-2xl mx-auto">
-            I'm always excited to take on new challenges and collaborate on innovative projects. Let's discuss how we can bring your ideas to life.
+          <p className="text-fluid-base text-white/80 mb-8 max-w-2xl mx-auto">
+            I'm always excited to take on new challenges and collaborate on innovative projects.
+            Let's discuss how we can bring your ideas to life.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/projects-gallery"
-              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-text-primary hover:bg-background rounded-lg nav-transition"
+              className="inline-flex items-center space-x-2 px-6 py-3 border border-border text-white hover:bg-background rounded-lg nav-transition"
             >
               <Icon name="FolderOpen" size={20} strokeWidth={2} />
               <span className="font-medium">View My Work</span>

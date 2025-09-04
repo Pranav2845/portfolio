@@ -6,30 +6,29 @@ import Icon from 'components/AppIcon';
 const IntroductionSection = () => {
   const personalInfo = {
     biography: `I'm a B.Tech student at Galgotias University with a solid foundation in Data Structures and Algorithms (DSA) and a growing expertise in web development. I enjoy building responsive, user-friendly websites using modern web technologies like React, Node.js, and Express. I'm passionate about solving real-world problems through code, continuously learning new tools, and keeping up with the latest trends in the tech world. I believe in the power of technology to simplify complex processes and enhance human experiences through thoughtful design and robust functionality.`,
-    
-    highlights: [
-  {
-    icon: 'Code',
-    title: 'Project Experience',
-    description: 'Worked on academic and personal projects using React, Node.js, and Express to build functional web applications.'
-  },
-  {
-    icon: 'RefreshCw',
-    title: 'Technological Agility',
-    description: 'Comfortable working with new tools and frameworks, and quickly adapting to shifting technical requirements.'
-  },
-  {
-    icon: 'Book',
-    title: 'DSA Proficiency',
-    description: 'Strong foundation in data structures and algorithms, regularly practicing on competitive coding platforms.'
-  },
-  {
-    icon: 'Users',
-    title: 'Team Collaboration',
-    description: 'Collaborated on university and hackathon projects, fostering strong communication and delivery in team environments.'
-  }
-]
 
+    highlights: [
+      {
+        icon: 'Code',
+        title: 'Project Experience',
+        description: 'Worked on academic and personal projects using React, Node.js, and Express to build functional web applications.'
+      },
+      {
+        icon: 'RefreshCw',
+        title: 'Technological Agility',
+        description: 'Comfortable working with new tools and frameworks, and quickly adapting to shifting technical requirements.'
+      },
+      {
+        icon: 'Book',
+        title: 'DSA Proficiency',
+        description: 'Strong foundation in data structures and algorithms, regularly practicing on competitive coding platforms.'
+      },
+      {
+        icon: 'Users',
+        title: 'Team Collaboration',
+        description: 'Collaborated on university and hackathon projects, fostering strong communication and delivery in team environments.'
+      }
+    ]
   };
 
   const itemVariants = {
@@ -37,10 +36,7 @@ const IntroductionSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
@@ -49,10 +45,11 @@ const IntroductionSection = () => {
       {/* Content */}
       <motion.div variants={itemVariants} className="space-y-8">
         <div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             About Me
           </h2>
-          <div className="prose prose-lg max-w-none text-text-secondary">
+
+          <div className="prose prose-lg max-w-none text-white">
             <p className="mb-4">{personalInfo.biography}</p>
           </div>
         </div>
@@ -87,10 +84,10 @@ const IntroductionSection = () => {
             <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
               <Icon name={highlight.icon} size={24} className="text-accent" strokeWidth={2} />
             </div>
-            <h3 className="text-xl font-semibold text-primary mb-2">
+            <h3 className="text-xl font-semibold text-white mb-2">
               {highlight.title}
             </h3>
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-white">
               {highlight.description}
             </p>
           </motion.div>

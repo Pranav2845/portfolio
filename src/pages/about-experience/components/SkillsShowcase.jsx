@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Icon from 'components/AppIcon'; 
+
 const skillsWithImages = [
   {
     category: 'Frontend Development',
@@ -10,7 +11,6 @@ const skillsWithImages = [
       { name: 'TypeScript', image:'/assets/images/typescript_logo.webp' },
       { name: 'HTML5', image: '/assets/images/html_logo.webp' },
       { name: 'CSS3', image: '/assets/images/css_logo.webp' },
-
       { name: 'Tailwind CSS', image: '/assets/images/tailwindcss_logo.webp' }
     ]
   },
@@ -34,7 +34,6 @@ const skillsWithImages = [
   }
 ];
 
-
 const softSkills = [
   { name: 'Problem Solving', icon: 'Lightbulb', description: 'Analytical thinking and creative solutions' },
   { name: 'Team Leadership', icon: 'Users', description: 'Leading and mentoring development teams' },
@@ -50,13 +49,13 @@ const SkillsShowcase = ({ isVisible }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="bg-white rounded-xl p-8 border border-gray-200 shadow"
+      className="bg-surface rounded-xl p-8 border border-border shadow"
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-8">Skills & Expertise</h2>
+      <h2 className="text-3xl lg:text-4xl font-bold text-white mb-8">Skills & Expertise</h2>
 
-      {skillsWithImages.map((section, index) => (
+      {skillsWithImages.map((section) => (
         <div key={section.category} className="mb-10">
-          <h3 className="text-xl font-semibold text-gray-700 mb-4">{section.category}</h3>
+          <h3 className="text-xl font-semibold text-white mb-4">{section.category}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {section.skills.map((skill, i) => (
               <motion.div
@@ -64,12 +63,12 @@ const SkillsShowcase = ({ isVisible }) => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
-                className="flex items-center p-3 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition"
+                className="flex items-center p-3 bg-background rounded-lg border border-border hover:border-accent/40 hover:shadow-md nav-transition"
               >
-                <div className="w-10 h-10 bg-white border border-gray-300 rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                <div className="w-10 h-10 bg-surface border border-border rounded-full flex items-center justify-center mr-3 overflow-hidden">
                   <img src={skill.image} alt={skill.name} className="w-8 h-8 object-contain" />
                 </div>
-                <span className="text-gray-800 font-medium">{skill.name}</span>
+                <span className="text-white font-medium">{skill.name}</span>
               </motion.div>
             ))}
           </div>
@@ -78,7 +77,7 @@ const SkillsShowcase = ({ isVisible }) => {
 
       {/* Soft Skills */}
       <div className="mt-12">
-        <h3 className="text-xl font-semibold text-gray-700 mb-4">Soft Skills</h3>
+        <h3 className="text-xl font-semibold text-white mb-4">Soft Skills</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {softSkills.map((skill, i) => (
             <motion.div
@@ -86,15 +85,15 @@ const SkillsShowcase = ({ isVisible }) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: 0.5 + i * 0.05 }}
-              className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow transition"
+              className="p-4 bg-background rounded-lg border border-border hover:border-accent/40 nav-transition"
             >
               <div className="flex items-start space-x-3">
-                <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Icon name={skill.icon} size={20} className="text-indigo-500" strokeWidth={2} />
+                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon name={skill.icon} size={20} className="text-accent" strokeWidth={2} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-800">{skill.name}</h4>
-                  <p className="text-xs text-gray-600">{skill.description}</p>
+                  <h4 className="text-sm font-semibold text-white">{skill.name}</h4>
+                  <p className="text-xs text-white/80">{skill.description}</p>
                 </div>
               </div>
             </motion.div>
@@ -103,12 +102,12 @@ const SkillsShowcase = ({ isVisible }) => {
       </div>
 
       {/* Continuous Learning */}
-      <div className="mt-12 p-6 bg-indigo-50 rounded-lg border border-indigo-100">
-        <h3 className="text-lg font-semibold text-indigo-800 mb-2 flex items-center space-x-2">
-          <Icon name="TrendingUp" size={20} className="text-indigo-500" strokeWidth={2} />
+      <div className="mt-12 p-6 bg-accent/5 rounded-lg border border-accent/20">
+        <h3 className="text-lg font-semibold text-white mb-2 flex items-center space-x-2">
+          <Icon name="TrendingUp" size={20} className="text-accent" strokeWidth={2} />
           <span>Continuous Learning</span>
         </h3>
-        <p className="text-sm text-gray-700 mb-4">
+        <p className="text-sm text-white/80 mb-4">
           I believe in staying current with technology trends and continuously expanding my skill set.
           Currently exploring AI/ML integration in web development and advanced performance optimization techniques.
         </p>
@@ -116,7 +115,7 @@ const SkillsShowcase = ({ isVisible }) => {
           {['Next.js', 'GraphQL', 'WebAssembly', 'PWA', 'Micro-frontends', 'AI/ML'].map(tech => (
             <span
               key={tech}
-              className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full"
+              className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full"
             >
               {tech}
             </span>

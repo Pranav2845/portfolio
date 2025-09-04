@@ -9,7 +9,7 @@ import ProjectHero from './components/ProjectHero';
 import ProjectOverview from './components/ProjectOverview';
 import TechnicalDetails from './components/TechnicalDetails';
 import ProjectResults from './components/ProjectResults';
-import RelatedProjects from './components/RelatedProjects';
+
 
 const ProjectDetailView = () => {
   const [searchParams] = useSearchParams();
@@ -17,127 +17,160 @@ const ProjectDetailView = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Mock projects data
+  // ===== REAL PROJECTS =====
   const allProjects = [
     {
       id: '1',
-      title: 'E-Commerce Platform',
-      subtitle: 'Full-Stack Web Application',
-      duration: '6 months',
-      role: 'Lead Frontend Developer',
-      category: 'Web Development',
-      status: 'Completed',
-      heroImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop',
+      title: 'CodeTracker',
+      subtitle: 'Competitive Programming Progress Tracker',
+      duration: 'Ongoing',
+      role: 'Full-Stack Developer',
+      category: 'Web Application',
+      status: 'Live',
+      heroImage: '/assets/images/codetracker.png',
       heroVideo: null,
-      overview: `A comprehensive e-commerce platform built for a mid-sized retail company looking to expand their online presence. The project involved creating a modern, user-friendly shopping experience with advanced features like real-time inventory management, personalized recommendations, and seamless checkout process.
-
-The platform was designed to handle high traffic volumes while maintaining excellent performance and user experience across all devices.`,
-      challenge: `The main challenge was creating a scalable platform that could handle thousands of concurrent users while providing real-time inventory updates and personalized shopping experiences. The existing legacy system was outdated and couldn't support modern e-commerce features.
-
-Additionally, the client needed seamless integration with their existing ERP system and multiple payment gateways while ensuring PCI compliance and data security.`,
-      solution: `We implemented a microservices architecture using React for the frontend and Node.js for the backend services. The solution included:
-
-• Real-time inventory management with WebSocket connections
-• Advanced search and filtering capabilities with Elasticsearch
-• Personalized product recommendations using machine learning
-• Progressive Web App (PWA) features for mobile users
-• Comprehensive admin dashboard for inventory and order management`,
-      results: `The new platform exceeded all performance expectations and business goals:
-
-• 300% increase in online sales within the first quarter
-• 45% improvement in page load times compared to the legacy system
-• 60% increase in mobile conversions
-• 25% reduction in cart abandonment rates
-• 99.9% uptime since launch`,
+      overview: `CodeTracker merges multiple DSA platforms into one seamless dashboard. It aggregates user stats from
+LeetCode, Codeforces, and Coding Ninjas, visualizes trends, shows upcoming contests, and includes an AI assistant
+(Gemini) to summarize progress and recommend next problems.`,
+      challenge: `Pulling consistent profile/problem data across platforms with different HTML structures/APIs and keeping it fast.
+Handling auth securely while supporting file uploads (avatars) and generating charts without blocking the UI.`,
+      solution: `Backend scrapers (Cheerio) and API fetchers are orchestrated via Express routes. Data is stored in MongoDB with Mongoose.
+JWT-based auth protects user endpoints. The frontend (React + Redux Toolkit + Recharts + Tailwind) renders dashboards and trends.
+Contest data is unified via CLIST. An AI route (Gemini API) answers user queries and summarizes performance.`,
+      results: `• 3+ platforms unified into one view
+• Submissions and difficulty trend charts
+• Contest calendar + "Add to Calendar" (ICS)
+• Conversational insights via Gemini`,
+      technologies: [
+        { name: 'React (Vite)', category: 'Frontend' },
+        { name: 'Redux Toolkit', category: 'State' },
+        { name: 'TailwindCSS', category: 'UI' },
+        { name: 'Recharts', category: 'Charts' },
+        { name: 'Node.js', category: 'Backend' },
+        { name: 'Express', category: 'Backend' },
+        { name: 'MongoDB', category: 'Database' },
+        { name: 'Mongoose', category: 'ORM' },
+        { name: 'Cheerio', category: 'Scraping' },
+        { name: 'Axios', category: 'HTTP' },
+        { name: 'JWT', category: 'Auth' },
+        { name: 'Bcrypt', category: 'Security' },
+        { name: 'Multer', category: 'Uploads' },
+        { name: 'CLIST API', category: 'External' },
+        { name: 'Gemini API', category: 'AI' }
+      ],
+      features: [
+        'Unified profile & submissions across platforms',
+        'AI assistant for insights & recommendations',
+        'Trend charts & category-wise stats',
+        'Upcoming contests (unified feed)',
+        'Calendar export (ICS/Google/Outlook)',
+        'JWT auth with protected routes'
+      ],
+      liveUrl: '#',
+      githubUrl: 'https://github.com/Pranav2845/code_tracker',
+      testimonial: null,
+      metrics: [
+        { label: 'Platforms Unified', value: '3+' },
+        { label: 'Core Charts', value: '5+' },
+        { label: 'Latency (p95)', value: '< 300ms' },
+        { label: 'Uptime', value: '99%+' }
+      ]
+    },
+    {
+      id: '2',
+      title: 'Synclet',
+      subtitle: 'Modern File Management (Next.js + Appwrite)',
+      duration: 'In Progress',
+      role: 'Frontend Developer',
+      category: 'Web Application',
+      status: 'In Progress',
+      heroImage: '/assets/images/synclet.png',
+      heroVideo: null,
+      overview: `Synclet is a clean, responsive file manager with Appwrite auth, uploads, sharing links, sorting, and activity hints.
+It also ships .ics utilities to export events to calendars.`,
+      challenge: `Designing a frictionless UX for file actions (upload, share, sort) while keeping the UI cohesive across devices.
+Ensuring performant rendering of lists and safe public links.`,
+      solution: `Next.js 15 + React 19 for the app shell and routing, Appwrite for auth/storage, Tailwind + ShadCN for consistent UIs,
+and TypeScript for safety. Calendar exports are generated on-demand (.ics).`,
+      results: `• Smooth drag/drop uploads
+• Shareable links with optional expiry
+• Sort by name/date/size
+• Consistent design language`,
+      technologies: [
+        { name: 'React 19', category: 'Frontend' },
+        { name: 'Next.js 15', category: 'Framework' },
+        { name: 'TypeScript', category: 'Language' },
+        { name: 'Appwrite', category: 'Backend' },
+        { name: 'TailwindCSS', category: 'UI' },
+        { name: 'ShadCN', category: 'UI' },
+        { name: 'Calendar/ICS', category: 'Utilities' }
+      ],
+      features: [
+        'Auth + secure uploads',
+        'Share links with controls',
+        'Sorting & quick filters',
+        'ICS export utilities',
+        'Responsive design system'
+      ],
+      liveUrl: '#',
+      githubUrl: 'https://github.com/Pranav2845/Synclet',
+      testimonial: null,
+      metrics: [
+        { label: 'CLS', value: '< 0.05' },
+        { label: 'LCP', value: '< 1.8s' },
+        { label: 'Bundle Splits', value: 'Yes' }
+      ]
+    },
+    {
+      id: '3',
+      title: 'KnightMove',
+      subtitle: 'Real-time Multiplayer Chess',
+      duration: 'In Development',
+      role: 'Full-Stack Developer',
+      category: 'Game',
+      status: 'In Development',
+      heroImage: '/assets/images/knightmove.png',
+      heroVideo: null,
+      overview: `KnightMove is an online chess platform with matchmaking, real-time gameplay, in-game chat, and basic analysis mode.
+Built for low latency and clean UX.`,
+      challenge: `Maintaining consistent real-time state between players, avoiding desyncs, and keeping move validation authoritative
+while retaining a smooth UI.`,
+      solution: `Socket.io channels for rooms and chat, server-side move validation, and optimistic UI updates. MongoDB stores match data
+and profiles. Tailwind keeps the interface snappy and accessible.`,
+      results: `• Stable real-time experience
+• Clean board interactions
+• Solid base for future engines`,
       technologies: [
         { name: 'React', category: 'Frontend' },
         { name: 'Node.js', category: 'Backend' },
+        { name: 'Express', category: 'Backend' },
+        { name: 'Socket.io', category: 'Real-time' },
         { name: 'MongoDB', category: 'Database' },
-        { name: 'Redis', category: 'Caching' },
-        { name: 'AWS', category: 'Cloud' },
-        { name: 'Docker', category: 'DevOps' },
-        { name: 'Stripe', category: 'Payment' },
-        { name: 'Elasticsearch', category: 'Search' }
+        { name: 'TailwindCSS', category: 'UI' }
       ],
       features: [
-        'Real-time inventory management','Advanced product search and filtering','Personalized recommendations','Multi-payment gateway integration','Progressive Web App (PWA)','Admin dashboard','Order tracking system','Customer reviews and ratings'
+        'Matchmaking & rooms',
+        'Spectator mode (planned)',
+        'In-game chat',
+        'Basic analysis mode'
       ],
-      liveUrl: 'https://demo-ecommerce.example.com',githubUrl: 'https://github.com/username/ecommerce-platform',
-      testimonial: {
-        quote: "The new platform transformed our business completely. The team delivered beyond our expectations with exceptional attention to detail and performance.",
-        author: "Sarah Johnson",
-        position: "CEO, RetailCorp"
-      },
+      liveUrl: '#',
+      githubUrl: '#',
+      testimonial: null,
       metrics: [
-        { label: 'Performance Score', value: '98/100' },
-        { label: 'Page Load Time', value: '1.2s' },
-        { label: 'Mobile Score', value: '96/100' },
-        { label: 'Accessibility', value: '100/100' }
-      ]
-    },
-    {
-      id: '2',title: 'Task Management App',subtitle: 'Mobile-First Progressive Web App',duration: '4 months',role: 'Full-Stack Developer',category: 'Mobile App',status: 'Completed',heroImage: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&h=600&fit=crop',
-      overview: `A comprehensive task management application designed for teams and individuals to boost productivity and collaboration.`,
-      challenge: `Creating an intuitive interface that works seamlessly across all devices while maintaining real-time synchronization.`,
-      solution: `Implemented a React-based PWA with real-time updates using WebSockets and offline functionality.`,
-      results: `Achieved 95% user satisfaction rate and 40% improvement in team productivity metrics.`,
-      technologies: [
-        { name: 'React', category: 'Frontend' },
-        { name: 'PWA', category: 'Technology' },
-        { name: 'WebSockets', category: 'Real-time' },
-        { name: 'IndexedDB', category: 'Storage' }
-      ],
-      features: ['Real-time collaboration', 'Offline functionality', 'Task automation', 'Team analytics'],
-      liveUrl: 'https://demo-tasks.example.com',githubUrl: 'https://github.com/username/task-app',
-      testimonial: {
-        quote: "This app revolutionized how our team manages projects. The interface is intuitive and the features are exactly what we needed.",
-        author: "Mike Chen",
-        position: "Project Manager, TechStart"
-      },
-      metrics: [
-        { label: 'User Rating', value: '4.8/5' },
-        { label: 'Daily Active Users', value: '10K+' },
-        { label: 'Task Completion Rate', value: '+40%' },
-        { label: 'Team Productivity', value: '+35%' }
-      ]
-    },
-    {
-      id: '3',title: 'Analytics Dashboard',subtitle: 'Data Visualization Platform',duration: '5 months',role: 'Frontend Architect',category: 'Data Visualization',status: 'Completed',heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
-      overview: `An advanced analytics dashboard for business intelligence and data visualization.`,
-      challenge: `Processing and visualizing large datasets while maintaining smooth user interactions.`,
-      solution: `Built with React and D3.js for custom visualizations with optimized rendering techniques.`,
-      results: `Reduced data analysis time by 70% and improved decision-making speed across the organization.`,
-      technologies: [
-        { name: 'React', category: 'Frontend' },
-        { name: 'D3.js', category: 'Visualization' },
-        { name: 'WebGL', category: 'Graphics' },
-        { name: 'Python', category: 'Backend' }
-      ],
-      features: ['Interactive charts', 'Real-time data', 'Custom filters', 'Export functionality'],
-      liveUrl: 'https://demo-analytics.example.com',githubUrl: 'https://github.com/username/analytics-dashboard',
-      testimonial: {
-        quote: "The dashboard provides incredible insights into our business metrics. The visualizations are both beautiful and functional.",
-        author: "Lisa Rodriguez",
-        position: "Data Director, DataCorp"
-      },
-      metrics: [
-        { label: 'Data Processing', value: '1M+ records' },
-        { label: 'Response Time', value: '<200ms' },
-        { label: 'Chart Types', value: '15+' },
-        { label: 'User Adoption', value: '95%' }
+        { label: 'RTT Target', value: '< 120ms' },
+        { label: 'Spectators', value: 'Planned' }
       ]
     }
   ];
 
   useEffect(() => {
-    // Simulate loading
     setIsLoading(true);
     const timer = setTimeout(() => {
       const project = allProjects.find(p => p.id === projectId);
       setCurrentProject(project || allProjects[0]);
       setIsLoading(false);
-    }, 500);
-
+    }, 400);
     return () => clearTimeout(timer);
   }, [projectId]);
 
@@ -182,13 +215,10 @@ Additionally, the client needed seamless integration with their existing ERP sys
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Main Content */}
       <main className="pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Breadcrumb */}
           <Breadcrumb />
 
-          {/* Back Button */}
           <div className="mb-8">
             <Link
               to="/projects-gallery"
@@ -199,28 +229,19 @@ Additionally, the client needed seamless integration with their existing ERP sys
             </Link>
           </div>
 
-          {/* Project Hero */}
           <ProjectHero project={currentProject} />
 
-          {/* Project Content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
               <ProjectOverview project={currentProject} />
               <ProjectResults project={currentProject} />
             </div>
 
-            {/* Sidebar */}
             <div className="lg:col-span-1">
               <TechnicalDetails project={currentProject} />
             </div>
           </div>
 
-          {/* Related Projects */}
-          <RelatedProjects currentProject={currentProject} allProjects={allProjects} />
-
-          {/* Project Navigation */}
-          <ProjectNavigation currentProject={currentProject} allProjects={allProjects} />
         </div>
       </main>
     </div>

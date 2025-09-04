@@ -4,13 +4,13 @@ import Icon from 'components/AppIcon';
 const ProjectResults = ({ project }) => {
   return (
     <section>
-      <h3 className="text-fluid-xl font-bold text-primary mb-6 flex items-center space-x-3">
+      <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
         <Icon name="TrendingUp" size={24} className="text-success" strokeWidth={2} />
         <span>Results & Impact</span>
       </h3>
       
       <div className="bg-gradient-to-r from-success/5 to-success/10 rounded-xl p-8 border border-success/20">
-        <p className="text-fluid-base text-text-primary leading-relaxed mb-6">
+        <p className="text-base text-gray-300 leading-relaxed mb-6">
           {project.results}
         </p>
 
@@ -22,7 +22,7 @@ const ProjectResults = ({ project }) => {
                 <div className="text-2xl lg:text-3xl font-bold text-success mb-2">
                   {metric.value}
                 </div>
-                <div className="text-sm text-text-secondary">
+                <div className="text-sm text-gray-400">
                   {metric.label}
                 </div>
               </div>
@@ -34,10 +34,10 @@ const ProjectResults = ({ project }) => {
       {/* Call to Action */}
       <div className="mt-8 p-6 bg-accent/5 rounded-xl border border-accent/20">
         <div className="text-center">
-          <h4 className="text-lg font-bold text-primary mb-2">
+          <h4 className="text-lg font-bold text-white mb-2">
             Interested in Similar Work?
           </h4>
-          <p className="text-text-secondary mb-4">
+          <p className="text-gray-300 mb-4">
             Let's discuss how I can help bring your project ideas to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -50,7 +50,7 @@ const ProjectResults = ({ project }) => {
             </a>
             <a
               href="/projects-gallery"
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-text-primary border border-border rounded-lg hover:bg-border/50 nav-transition"
+              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-surface text-gray-300 border border-border rounded-lg hover:bg-border/50 nav-transition"
             >
               <Icon name="FolderOpen" size={18} strokeWidth={2} />
               <span className="font-medium">View All Projects</span>

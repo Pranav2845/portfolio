@@ -43,10 +43,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut'
-    }
+    transition: { duration: 0.6, ease: 'easeOut' }
   }
 };
 
@@ -55,10 +52,10 @@ const SkillsPreview = () => {
     <div className="space-y-12">
       {/* Header */}
       <motion.div variants={itemVariants} className="text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
+        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
           Skills & Expertise
         </h2>
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
           A visual overview of my technical expertise and tools I work with
         </p>
       </motion.div>
@@ -74,10 +71,10 @@ const SkillsPreview = () => {
           >
             {/* Category Header */}
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
-                <Icon name={category.icon} size={24} className="text-gray-700" strokeWidth={2} />
+              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <Icon name={category.icon} size={24} className="text-accent" strokeWidth={2} />
               </div>
-              <h3 className="text-xl font-semibold text-primary">
+              <h3 className="text-xl font-semibold text-white">
                 {category.title}
               </h3>
             </div>
@@ -87,12 +84,12 @@ const SkillsPreview = () => {
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={skillIndex}
-                  className="flex items-center p-2 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-sm transition"
+                  className="flex items-center p-2 bg-background/40 rounded-lg border border-border hover:shadow-sm nav-transition"
                 >
-                  <div className="w-9 h-9 bg-white border border-gray-300 rounded-full flex items-center justify-center mr-3 overflow-hidden">
+                  <div className="w-9 h-9 bg-surface border border-border rounded-full flex items-center justify-center mr-3 overflow-hidden">
                     <img src={skill.image} alt={skill.name} className="w-6 h-6 object-contain" />
                   </div>
-                  <span className="text-gray-800 text-sm font-medium">{skill.name}</span>
+                  <span className="text-white text-sm font-medium">{skill.name}</span>
                 </div>
               ))}
             </div>

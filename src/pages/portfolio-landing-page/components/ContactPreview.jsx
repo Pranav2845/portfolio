@@ -13,24 +13,9 @@ const ContactPreview = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
-    {
-      icon: 'Mail',
-      title: 'Email',
-      value: 'pranavpandey9550@gmail.com',
-      link: 'mailto:pranavpandey9550@gmail.com'
-    },
-    {
-      icon: 'Phone',
-      title: 'Phone',
-      value: '9559527484',
-      link: 'tel:9559527484'
-    },
-    {
-      icon: 'MapPin',
-      title: 'Location',
-      value: 'Greater Noida, UP',
-      link: 'https://maps.google.com?q=Greater+Noida,+UP'
-    }
+    { icon: 'Mail',   title: 'Email',    value: 'pranavpandey9550@gmail.com', link: 'mailto:pranavpandey9550@gmail.com' },
+    { icon: 'Phone',  title: 'Phone',    value: '9559527484',                 link: 'tel:9559527484' },
+    { icon: 'MapPin', title: 'Location', value: 'Greater Noida, UP',          link: 'https://maps.google.com?q=Greater+Noida,+UP' }
   ];
 
   const handleInputChange = (e) => {
@@ -46,14 +31,9 @@ const ContactPreview = () => {
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message
-        },
+        { from_name: formData.name, from_email: formData.email, message: formData.message },
         PUBLIC_KEY
       );
-
       alert("Message sent successfully!");
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -66,18 +46,14 @@ const ContactPreview = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' }
-    }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
   };
 
   return (
     <div className="space-y-12">
       <motion.div variants={itemVariants} className="text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">Let's Work Together</h2>
-        <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">Let's Work Together</h2>
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
           Have a project in mind? I'd love to hear about it. Let's collaborate to bring your ideas to life.
         </p>
       </motion.div>
@@ -85,8 +61,8 @@ const ContactPreview = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <motion.div variants={itemVariants} className="space-y-8">
           <div>
-            <h3 className="text-2xl font-semibold text-primary mb-6">Get In Touch</h3>
-            <p className="text-text-secondary mb-8">
+            <h3 className="text-2xl font-semibold text-white mb-6">Get In Touch</h3>
+            <p className="text-white/80 mb-8">
               Open to freelance projects, internships, and collaborations. Feel free to reach out through any of the methods below.
             </p>
           </div>
@@ -98,22 +74,22 @@ const ContactPreview = () => {
                 href={contact.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-4 p-4 bg-surface rounded-lg hover:bg-gray-100 nav-transition group"
+                className="flex items-center space-x-4 p-4 bg-surface rounded-lg hover:bg-surface/80 nav-transition group"
                 whileHover={{ x: 5 }}
               >
                 <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent group-hover:text-white nav-transition">
                   <Icon name={contact.icon} size={20} className="text-accent group-hover:text-white" strokeWidth={2} />
                 </div>
                 <div>
-                  <h4 className="font-medium text-primary">{contact.title}</h4>
-                  <p className="text-text-secondary">{contact.value}</p>
+                  <h4 className="font-medium text-white">{contact.title}</h4>
+                  <p className="text-white/80">{contact.value}</p>
                 </div>
               </motion.a>
             ))}
           </div>
 
           <div className="pt-6 border-t border-border">
-            <h4 className="font-medium text-primary mb-4">Follow Me</h4>
+            <h4 className="font-medium text-white mb-4">Follow Me</h4>
             <div className="flex space-x-4">
               {[
                 { name: 'GitHub', icon: 'Github', url: 'https://github.com/Pranav2845' },
@@ -124,7 +100,7 @@ const ContactPreview = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-surface hover:bg-accent text-text-secondary hover:text-white rounded-lg flex items-center justify-center nav-transition"
+                  className="w-10 h-10 bg-surface hover:bg-accent text-white hover:text-white rounded-lg flex items-center justify-center nav-transition"
                   aria-label={social.name}
                 >
                   <Icon name={social.icon} size={18} strokeWidth={2} />
@@ -135,11 +111,11 @@ const ContactPreview = () => {
         </motion.div>
 
         <motion.div variants={itemVariants} className="bg-surface p-8 rounded-xl">
-          <h3 className="text-2xl font-semibold text-primary mb-6">Send a Message</h3>
+          <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">Your Name</label>
+              <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Your Name</label>
               <input
                 type="text"
                 id="name"
@@ -147,13 +123,13 @@ const ContactPreview = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition"
+                className="w-full px-4 py-3 border border-border rounded-lg bg-transparent text-white placeholder-white/60 focus:ring-2 focus:ring-accent focus:border-accent nav-transition"
                 placeholder="Enter your name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">Email Address</label>
+              <label htmlFor="email" className="block text-sm font-medium text-white mb-2">Email Address</label>
               <input
                 type="email"
                 id="email"
@@ -161,13 +137,13 @@ const ContactPreview = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition"
+                className="w-full px-4 py-3 border border-border rounded-lg bg-transparent text-white placeholder-white/60 focus:ring-2 focus:ring-accent focus:border-accent nav-transition"
                 placeholder="Enter your email"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">Message</label>
+              <label htmlFor="message" className="block text-sm font-medium text-white mb-2">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -175,7 +151,7 @@ const ContactPreview = () => {
                 onChange={handleInputChange}
                 required
                 rows={4}
-                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-accent focus:border-accent nav-transition resize-none"
+                className="w-full px-4 py-3 border border-border rounded-lg bg-transparent text-white placeholder-white/60 focus:ring-2 focus:ring-accent focus:border-accent nav-transition resize-none"
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -202,7 +178,7 @@ const ContactPreview = () => {
           </form>
 
           <div className="mt-6 pt-6 border-t border-border text-center">
-            <p className="text-sm text-text-secondary mb-4">Prefer a more detailed conversation?</p>
+            <p className="text-sm text-white/80 mb-4">Prefer a more detailed conversation?</p>
             <Link
               to="/contact-connect"
               className="inline-flex items-center text-accent hover:text-accent/80 nav-transition"
