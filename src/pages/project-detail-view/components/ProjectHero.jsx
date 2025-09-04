@@ -1,18 +1,21 @@
+// src/pages/project-detail-view/components/ProjectHero.jsx
 import React, { useState } from 'react';
 import Icon from 'components/AppIcon';
 import Image from 'components/AppImage';
 
 const LIVE_URL_MAP = {
   codetracker: 'https://code-tracker-7o7s.vercel.app',
-  knightmove: 'https://mychess-i1dp.onrender.com/',
+  knightmove: 'https://mychess-i1dp.onrender.com',
   synclet: 'https://synclet.vercel.app',
 };
 
+// normalize: "Knight Move", "knight-move", "Knight_Move" -> "knightmove"
 const slugify = (v) =>
   String(v || '')
     .toLowerCase()
-    .replace(/\s+/g, '')        // remove spaces
-    .replace(/[^a-z0-9\-]/g, ''); // keep alphanum/dash
+    .trim()
+    .replace(/[\s_\-]+/g, '') // remove spaces/underscores/dashes
+    .replace(/[^a-z0-9]/g, ''); // keep only alphanum
 
 const ProjectHero = ({ project }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -20,12 +23,11 @@ const ProjectHero = ({ project }) => {
   const handleVideoPlay = () => setIsVideoPlaying(true);
 
   const slug =
-    project?.slug ||
-    slugify(project?.id) ||
-    slugify(project?.title) ||
-    slugify(project?.name);
+    project?.slug
+      ? slugify(project.slug)
+      : slugify(project?.title) || slugify(project?.name) || slugify(project?.id);
 
-  // prefer explicit project.liveUrl, else map by slug
+  // prefer explicit liveUrl from project, else lookup from map
   const liveHref = project?.liveUrl || LIVE_URL_MAP[slug] || '';
 
   return (
@@ -34,14 +36,23 @@ const ProjectHero = ({ project }) => {
       <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden mb-8 bg-surface">
         {project.heroVideo && !isVideoPlaying ? (
           <div className="relative w-full h-full">
-            <Image src={project.heroImage} alt={project.title} className="w-full h-full object-cover" />
+            <Image
+              src={project.heroImage}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
               <button
                 onClick={handleVideoPlay}
                 className="w-20 h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center nav-transition group"
                 aria-label="Play project video"
               >
-                <Icon name="Play" size={32} className="text-primary ml-1 group-hover:scale-110 nav-transition" strokeWidth={2} />
+                <Icon
+                  name="Play"
+                  size={32}
+                  className="text-primary ml-1 group-hover:scale-110 nav-transition"
+                  strokeWidth={2}
+                />
               </button>
             </div>
           </div>
@@ -56,7 +67,11 @@ const ProjectHero = ({ project }) => {
             poster={project.heroImage}
           />
         ) : (
-          <Image src={project.heroImage} alt={project.title} className="w-full h-full object-cover" />
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
         )}
       </div>
 
@@ -73,7 +88,9 @@ const ProjectHero = ({ project }) => {
             </span>
           </div>
 
-          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-2">{project.title}</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-2">
+            {project.title}
+          </h1>
 
           <p className="text-lg text-gray-300 mb-6">{project.subtitle}</p>
 
@@ -94,12 +111,12 @@ const ProjectHero = ({ project }) => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 lg:flex-col lg:w-48">
-          {/* Live Demo (only if available) */}
+          {/* Live Demo */}
           {liveHref && (
             <a
               href={liveHref}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
             >
               <Icon name="ExternalLink" size={18} strokeWidth={2} />
@@ -107,6 +124,7 @@ const ProjectHero = ({ project }) => {
             </a>
           )}
 
+          {/* GitHub link if available */}
           {project.githubUrl && (
             <a
               href={project.githubUrl}
