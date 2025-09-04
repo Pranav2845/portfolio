@@ -131,7 +131,7 @@ const PortfolioLandingPage = () => {
                 <span className="text-xl font-semibold">Portfolio</span>
               </div>
               <p className="text-gray-300 text-sm">
-                Creating digital experiences that make a difference.
+                Passionate about building innovative digital solutions that address real-world challenges. Specialized in Data Structures & Algorithms (DSA) and Full-Stack Development, with expertise in modern web technologies.
               </p>
             </div>
 
