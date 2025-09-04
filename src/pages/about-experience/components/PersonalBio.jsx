@@ -10,7 +10,7 @@ What drives me is the intersection of technology and human experience — findin
 
 I've had the opportunity to work on projects that integrate APIs, improve UI/UX design, and apply modern frameworks like React and Tailwind CSS. I'm actively involved in hackathons, open-source contributions, and tech communities where I continue to learn and grow.
 
-When I'm not coding, you'll find me solving DSA problems on LeetCode, exploring new frameworks, or helping fellow students understand core programming concepts. I believe in continuous improvement and sharing knowledge — values that inspire my journey as a developer.`,
+When I'm not coding, you'll find me exploring new frameworks, or helping fellow students understand core programming concepts. I believe in continuous improvement and sharing knowledge — values that inspire my journey as a developer.`,
     highlights: [
       { icon: "Code",     title: "Frontend Specialist", description: "Expert in React, Vue.js, and modern JavaScript frameworks with a focus on performance optimization." },
       { icon: "Users",    title: "Team Collaboration",  description: "Experienced in leading cross-functional teams and mentoring junior developers." },

@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'components/AppIcon';
+import getLiveHref from 'utils/projectLinks';
 
 const TechnicalDetails = ({ project }) => {
   // Dark-theme-friendly category styles
@@ -18,7 +19,7 @@ const TechnicalDetails = ({ project }) => {
     Visualization:'bg-violet-500/10 text-violet-300 border-violet-500/20',
     Graphics:    'bg-rose-500/10 text-rose-300 border-rose-500/20',
   };
-
+ const liveHref = getLiveHref(project);
   return (
     <div className="sticky top-24 space-y-8">
       {/* Project Info Card */}
@@ -94,9 +95,10 @@ const TechnicalDetails = ({ project }) => {
         </h3>
 
         <div className="space-y-3">
-          {project.liveUrl && (
+           {/** Resolve final live demo URL, ignoring placeholders like '#' */}
+          {liveHref && (
             <a
-              href={project.liveUrl}
+              href={liveHref}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition text-sm font-medium"

@@ -3,32 +3,16 @@ import React, { useState } from 'react';
 import Icon from 'components/AppIcon';
 import Image from 'components/AppImage';
 
-const LIVE_URL_MAP = {
-  codetracker: 'https://code-tracker-7o7s.vercel.app',
-  knightmove: 'https://mychess-i1dp.onrender.com',
-  synclet: 'https://synclet.vercel.app',
-};
-
-// normalize: "Knight Move", "knight-move", "Knight_Move" -> "knightmove"
-const slugify = (v) =>
-  String(v || '')
-    .toLowerCase()
-    .trim()
-    .replace(/[\s_\-]+/g, '') // remove spaces/underscores/dashes
-    .replace(/[^a-z0-9]/g, ''); // keep only alphanum
+import getLiveHref from 'utils/projectLinks';
 
 const ProjectHero = ({ project }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   const handleVideoPlay = () => setIsVideoPlaying(true);
 
-  const slug =
-    project?.slug
-      ? slugify(project.slug)
-      : slugify(project?.title) || slugify(project?.name) || slugify(project?.id);
-
-  // prefer explicit liveUrl from project, else lookup from map
-  const liveHref = project?.liveUrl || LIVE_URL_MAP[slug] || '';
+  // prefer explicit project.liveUrl unless it's a placeholder; otherwise
+  // fall back to known URLs based on project slug/title
+  const liveHref = getLiveHref(project);
 
   return (
     <div className="mb-12">
