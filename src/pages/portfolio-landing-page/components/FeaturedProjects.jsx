@@ -19,7 +19,7 @@ const FeaturedProjects = () => {
     },
     {
       id: 2,
-      title: 'CheckMate',
+      title: 'KnightMove',
       description:
         'A feature-rich online chess application allowing real-time multiplayer matches, built-in AI practice, and a sleek, responsive interface inspired by popular platforms like Lichess and Chess.com.',
       image: '/assets/images/checkmate.png',

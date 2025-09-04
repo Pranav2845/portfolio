@@ -91,17 +91,16 @@ const ProjectHero = ({ project }) => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 lg:flex-col lg:w-48">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
-            >
-              <Icon name="ExternalLink" size={18} strokeWidth={2} />
-              <span className="font-medium">Live Demo</span>
-            </a>
-          )}
+          {/* Hardcoded Live Demo Link */}
+          <a
+            href="https://code-tracker-7o7s.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 nav-transition"
+          >
+            <Icon name="ExternalLink" size={18} strokeWidth={2} />
+            <span className="font-medium">Live Demo</span>
+          </a>
           
           {project.githubUrl && (
             <a

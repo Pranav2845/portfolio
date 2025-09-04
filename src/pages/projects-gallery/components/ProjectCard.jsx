@@ -1,27 +1,56 @@
-import React, { useState } from 'react';
+// src/pages/projects-gallery/components/ProjectCard.jsx
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from 'components/AppIcon';
 import Image from 'components/AppImage';
+
+const IMAGE_MAP = {
+  codetracker: '/assets/images/codetracker.png',
+  synclet: '/assets/images/synclet.png',
+  checkmate: '/assets/images/checkmate.png',
+};
+
+const FALLBACK_IMAGE = '/assets/images/no_image.png';
 
 const ProjectCard = ({ project }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
-  };
+  // Try to infer a key from title/slug/id to map to local images
+  const imageKey = useMemo(() => {
+    const candidates = [
+      project?.slug,
+      project?.key,
+      project?.id,
+      project?.title,
+      project?.name,
+    ]
+      .filter(Boolean)
+      .map((v) => String(v).toLowerCase().replace(/\s+/g, ''));
+
+    return candidates.find((k) => IMAGE_MAP[k]);
+  }, [project]);
+
+  // Decide the initial src: prefer mapped local image → provided project.image → fallback
+  const initialSrc = IMAGE_MAP[imageKey] || project?.image || FALLBACK_IMAGE;
+
+  const [imageSrc, setImageSrc] = useState(initialSrc);
+
+  const handleImageLoad = () => setIsImageLoaded(true);
 
   const handleImageError = () => {
-    setImageError(true);
-    setIsImageLoaded(true);
+    if (!imageError) {
+      setImageError(true);
+      setIsImageLoaded(true);
+      setImageSrc(FALLBACK_IMAGE);
+    }
   };
 
   const formatDate = (dateString) => {
+    if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short' 
-    });
+    if (isNaN(date)) return '';
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
   };
 
   return (
@@ -33,19 +62,19 @@ const ProjectCard = ({ project }) => {
             <Icon name="Image" size={32} className="text-text-secondary" strokeWidth={1.5} />
           </div>
         )}
-        
+
         <Image
-          src={project.image}
-          alt={project.title}
+          src={imageSrc}
+          alt={project?.title || 'Project image'}
           className={`w-full h-full object-cover group-hover:scale-105 nav-transition ${
             isImageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={handleImageLoad}
           onError={handleImageError}
         />
-        
+
         {/* Featured Badge */}
-        {project.featured && (
+        {project?.featured && (
           <div className="absolute top-4 left-4">
             <div className="flex items-center space-x-1 px-2 py-1 bg-accent text-white text-xs font-medium rounded-full">
               <Icon name="Star" size={12} strokeWidth={2} />
@@ -55,16 +84,18 @@ const ProjectCard = ({ project }) => {
         )}
 
         {/* Completion Date */}
-        <div className="absolute top-4 right-4">
-          <div className="px-2 py-1 bg-background/90 backdrop-blur-sm text-xs text-text-secondary rounded-full">
-            {formatDate(project.completedDate)}
+        {project?.completedDate && (
+          <div className="absolute top-4 right-4">
+            <div className="px-2 py-1 bg-background/90 backdrop-blur-sm text-xs text-text-secondary rounded-full">
+              {formatDate(project.completedDate)}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 nav-transition flex items-center justify-center">
           <Link
-            to={`/project-detail-view?id=${project.id}`}
+            to={`/project-detail-view?id=${project?.id}`}
             className="flex items-center space-x-2 px-6 py-3 bg-white text-primary rounded-lg hover:bg-surface nav-transition transform translate-y-4 group-hover:translate-y-0"
           >
             <Icon name="Eye" size={18} strokeWidth={2} />
@@ -78,58 +109,79 @@ const ProjectCard = ({ project }) => {
         {/* Title and Category */}
         <div className="mb-3">
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-lg font-semibold text-primary group-hover:text-accent nav-transition line-clamp-1">
-              {project.title}
+            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 group-hover:text-accent nav-transition line-clamp-1">
+              {project?.title}
             </h3>
-            <div className="flex-shrink-0 ml-2">
-              <span className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded-full ${
-                project.category === 'web' ? 'bg-blue-100 text-blue-800' :
-                project.category === 'mobile' ? 'bg-green-100 text-green-800' :
-                project.category === 'dashboard'? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'
-              }`}>
-                {project.category === 'web' && <Icon name="Globe" size={12} className="mr-1" strokeWidth={2} />}
-                {project.category === 'mobile' && <Icon name="Smartphone" size={12} className="mr-1" strokeWidth={2} />}
-                {project.category === 'dashboard' && <Icon name="BarChart3" size={12} className="mr-1" strokeWidth={2} />}
-                {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
-              </span>
-            </div>
+
+            {project?.category && (
+              <div className="flex-shrink-0 ml-2">
+                <span
+                  className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded-full ${
+                    project.category === 'web'
+                      ? 'bg-blue-100 text-blue-800'
+                      : project.category === 'mobile'
+                      ? 'bg-green-100 text-green-800'
+                      : project.category === 'dashboard'
+                      ? 'bg-purple-100 text-purple-800'
+                      : 'bg-gray-100 text-gray-800'
+                  }`}
+                >
+                  {project.category === 'web' && (
+                    <Icon name="Globe" size={12} className="mr-1" strokeWidth={2} />
+                  )}
+                  {project.category === 'mobile' && (
+                    <Icon name="Smartphone" size={12} className="mr-1" strokeWidth={2} />
+                  )}
+                  {project.category === 'dashboard' && (
+                    <Icon name="BarChart3" size={12} className="mr-1" strokeWidth={2} />
+                  )}
+                  {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+                </span>
+              </div>
+            )}
           </div>
-          
-          <p className="text-sm text-text-secondary line-clamp-3 leading-relaxed">
-            {project.description}
-          </p>
+
+          {project?.description && (
+            <p className="text-sm text-text-secondary line-clamp-3 leading-relaxed">
+              {project.description}
+            </p>
+          )}
         </div>
 
         {/* Technologies */}
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 3).map((tech, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center px-2 py-1 bg-surface text-text-secondary text-xs rounded-md border border-border"
-              >
-                {tech}
-              </span>
-            ))}
-            {project.technologies.length > 3 && (
-              <span className="inline-flex items-center px-2 py-1 bg-surface text-text-secondary text-xs rounded-md border border-border">
-                +{project.technologies.length - 3} more
-              </span>
-            )}
+        {Array.isArray(project?.technologies) && project.technologies.length > 0 && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.slice(0, 3).map((tech, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center px-2 py-1 bg-surface text-text-secondary text-xs rounded-md border border-border"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 3 && (
+                <span className="inline-flex items-center px-2 py-1 bg-surface text-text-secondary text-xs rounded-md border border-border">
+                  +{project.technologies.length - 3} more
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Industry Tag */}
-        <div className="mb-4">
-          <span className="inline-flex items-center space-x-1 text-xs text-text-secondary">
-            <Icon name="Building" size={12} strokeWidth={2} />
-            <span className="capitalize">{project.industry}</span>
-          </span>
-        </div>
+        {project?.industry && (
+          <div className="mb-4">
+            <span className="inline-flex items-center space-x-1 text-xs text-text-secondary">
+              <Icon name="Building" size={12} strokeWidth={2} />
+              <span className="capitalize">{project.industry}</span>
+            </span>
+          </div>
+        )}
 
         {/* Action Button */}
         <Link
-          to={`/project-detail-view?id=${project.id}`}
+          to={`/project-detail-view?id=${project?.id}`}
           className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2 bg-surface hover:bg-accent text-text-primary hover:text-white border border-border hover:border-accent rounded-lg nav-transition"
         >
           <Icon name="ArrowRight" size={16} strokeWidth={2} />

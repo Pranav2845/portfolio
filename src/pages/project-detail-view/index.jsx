@@ -129,7 +129,7 @@ and TypeScript for safety. Calendar exports are generated on-demand (.ics).`,
       role: 'Full-Stack Developer',
       category: 'Game',
       status: 'In Development',
-      heroImage: '/assets/images/knightmove.png',
+      heroImage: '/assets/images/checkmate.png',
       heroVideo: null,
       overview: `KnightMove is an online chess platform with matchmaking, real-time gameplay, in-game chat, and basic analysis mode.
 Built for low latency and clean UX.`,

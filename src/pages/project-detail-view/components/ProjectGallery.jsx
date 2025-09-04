@@ -1,3 +1,4 @@
+// ProjectGallery.jsx
 import React, { useState, useEffect } from 'react';
 import Icon from 'components/AppIcon';
 import Image from 'components/AppImage';
