@@ -7,7 +7,7 @@ import Image from 'components/AppImage';
 const IMAGE_MAP = {
   codetracker: '/assets/images/codetracker.png',
   synclet: '/assets/images/synclet.png',
-  checkmate: '/assets/images/checkmate.png',
+  knightmove: '/assets/images/checkmate.png',
 };
 
 const FALLBACK_IMAGE = '/assets/images/no_image.png';
