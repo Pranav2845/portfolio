@@ -1,3 +1,4 @@
+// src/pages/projects-gallery/index.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from 'components/AppIcon';
@@ -44,7 +45,7 @@ const ProjectsGallery = () => {
         "React 19","Next.js 15","TypeScript","Appwrite","TailwindCSS","ShadCN","Calendar/ICS"
       ],
       industry: "productivity",
-      featured: false,
+      featured: true,
       completedDate: "2025-06-10"
     },
     {
@@ -97,7 +98,7 @@ const ProjectsGallery = () => {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [selectedFilter, searchQuery]);
+  }, [selectedFilter, searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleFilterChange = (filterId) => setSelectedFilter(filterId);
   const handleSearchChange = (query) => setSearchQuery(query);
@@ -110,33 +111,15 @@ const ProjectsGallery = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <Breadcrumb />
 
-          <div className="text-center mb-8">
-            {/* match ContactPreview: white title + white/80 sub */}
+          <div className="text-center">
+            {/* Title + Subtitle */}
             <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">Projects Gallery</h1>
             <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Explore my portfolio of professional projects spanning web applications, mobile apps, and data dashboards. Each project represents a unique challenge solved with modern technologies and best practices.
+              Explore my portfolio of web applications that combine creativity, performance, and scalability—crafted with dedication and attention to detail to deliver impactful user experiences.
             </p>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-            <div className="text-center p-4 bg-background rounded-lg border border-border">
-              <div className="text-2xl font-bold text-accent mb-1">{projects.length}</div>
-              <div className="text-sm text-white/80">Total Projects</div>
-            </div>
-            <div className="text-center p-4 bg-background rounded-lg border border-border">
-              <div className="text-2xl font-bold text-accent mb-1">{projects.filter(p => p.featured).length}</div>
-              <div className="text-sm text-white/80">Featured</div>
-            </div>
-            <div className="text-center p-4 bg-background rounded-lg border border-border">
-              <div className="text-2xl font-bold text-accent mb-1">{new Set(projects.flatMap(p => p.technologies)).size}</div>
-              <div className="text-sm text-white/80">Technologies</div>
-            </div>
-            <div className="text-center p-4 bg-background rounded-lg border border-border">
-              <div className="text-2xl font-bold text-accent mb-1">{new Set(projects.map(p => p.industry)).size}</div>
-              <div className="text-sm text-white/80">Industries</div>
-            </div>
-          </div>
+          {/* (Stats removed as requested) */}
         </div>
       </div>
 
@@ -239,7 +222,7 @@ const ProjectsGallery = () => {
           </div>
         )}
 
-        {/* Load More Section (for future pagination) */}
+        {/* Load More (future pagination) */}
         {!isLoading && filteredProjects.length > 0 && filteredProjects.length >= 9 && (
           <div className="text-center mt-12">
             <button className="inline-flex items-center space-x-2 px-8 py-3 border border-border text-white/80 hover:text-accent hover:border-accent rounded-lg nav-transition">
@@ -254,7 +237,6 @@ const ProjectsGallery = () => {
       <div className="bg-surface border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            {/* match ContactPreview: white title + white/80 sub */}
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
               Ready to Start Your Project?
             </h2>

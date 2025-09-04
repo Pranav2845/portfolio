@@ -37,7 +37,8 @@ Handling auth securely while supporting file uploads (avatars) and generating ch
       solution: `Backend scrapers (Cheerio) and API fetchers are orchestrated via Express routes. Data is stored in MongoDB with Mongoose.
 JWT-based auth protects user endpoints. The frontend (React + Redux Toolkit + Recharts + Tailwind) renders dashboards and trends.
 Contest data is unified via CLIST. An AI route (Gemini API) answers user queries and summarizes performance.`,
-      results: `• 3+ platforms unified into one view
+      results: `• 6+ platforms unified into one view   
+      • Provide the total solved problem count and a detailed list of solved problems with clickable links to the original sources.
 • Submissions and difficulty trend charts
 • Contest calendar + "Add to Calendar" (ICS)
 • Conversational insights via Gemini`,
@@ -70,7 +71,7 @@ Contest data is unified via CLIST. An AI route (Gemini API) answers user queries
       githubUrl: 'https://github.com/Pranav2845/code_tracker',
       testimonial: null,
       metrics: [
-        { label: 'Platforms Unified', value: '3+' },
+        { label: 'Platforms Unified', value: '6' },
         { label: 'Core Charts', value: '5+' },
         { label: 'Latency (p95)', value: '< 300ms' },
         { label: 'Uptime', value: '99%+' }
